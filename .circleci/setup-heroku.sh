@@ -2,7 +2,6 @@
 curl -OSs https://cli-assets.heroku.com/install.sh
 sudo sh ./install.sh
 
-tar -zxvf
 cat > ~/.netrc << EOF
 machine api.heroku.com
   login $HEROKU_LOGIN
