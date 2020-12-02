@@ -32,7 +32,7 @@ jobs:
           docker build -t registry.heroku.com/$HEROKUAPP/web .
           docker login -u $HEROKU_LOGIN -p $HEROKU_TOKEN registry.heroku.com
           docker push registry.heroku.com/$HEROKUAPP/web:latest
-          whomai
+          whoami
           chmod +x .circleci/setup-heroku.sh
           .circleci/setup-heroku.sh
 
