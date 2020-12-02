@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -Ss https://cli-assets.heroku.com/install.sh
+curl -OSs https://cli-assets.heroku.com/install.sh
 sudo sh ./install.sh
 
 tar -zxvf
