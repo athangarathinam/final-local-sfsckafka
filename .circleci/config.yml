@@ -34,7 +34,7 @@ jobs:
           docker push registry.heroku.com/$HEROKUAPP/web:latest
 
           chmod +x .circleci/setup-heroku.sh
-          sudo .circleci/setup-heroku.sh
+          .circleci/setup-heroku.sh
 
           heroku container:release worker -a $HEROKUAPP
           heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
