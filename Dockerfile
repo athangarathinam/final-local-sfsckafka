@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Install OpenJDK-11
 RUN apt-get update -y \
-    && && yum upgrade -y \
+    && yum upgrade -y \
     && apt-get purge -y \
     && apt-get clean -y \
     && apt-get autoremove -y \
