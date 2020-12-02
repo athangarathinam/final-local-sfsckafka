@@ -32,9 +32,9 @@ jobs:
           docker build -t registry.heroku.com/$HEROKUAPP/web .
           docker login -u $HEROKU_LOGIN -p $HEROKU_TOKEN registry.heroku.com
           docker push registry.heroku.com/$HEROKUAPP/web:latest
-          whoami
+
           chmod +x .circleci/setup-heroku.sh
-          .circleci/setup-heroku.sh
+          sudo .circleci/setup-heroku.sh
 
           heroku container:release worker -a $HEROKUAPP
           heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
