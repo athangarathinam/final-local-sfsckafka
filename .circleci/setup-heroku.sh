@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -s https://cli-assets.heroku.com/install.sh | sh
+curl -Ss https://cli-assets.heroku.com/install.sh | sh
 
 cat > ~/.netrc << EOF
 machine api.heroku.com
