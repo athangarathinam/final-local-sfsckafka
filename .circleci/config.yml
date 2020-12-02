@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  heroku: circleci/heroku@1.2.3
   slack: circleci/slack@4.1.1
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
 
           docker build -t registry.heroku.com/$HEROKUAPP/web .
           docker login -u $HEROKU_LOGIN -p $HEROKU_TOKEN registry.heroku.com
-          docker push registry.heroku.com/$HEROKUAPP/web:latest
+          docker push registry.heroku.com/$HEROKUAPP/worker:latest
 
           chmod +x .circleci/setup-heroku.sh
           .circleci/setup-heroku.sh
