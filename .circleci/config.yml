@@ -21,7 +21,7 @@ jobs:
       scale_env:
         type: integer
     environment:
-      HEROKU_APP_NAME: sfsc-kafa-c1
+      HEROKU_APP_NAME: sfsc-kafka-c1
     steps:
       - checkout
       - setup_remote_docker:
@@ -36,7 +36,7 @@ jobs:
           chmod +x .circleci/setup-heroku.sh
           .circleci/setup-heroku.sh
 
-          heroku container:release web -a $HEROKUAPP
+          heroku container:release worker -a $HEROKUAPP
           heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
 
 workflows:
