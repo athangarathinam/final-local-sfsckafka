@@ -37,7 +37,7 @@ jobs:
           .circleci/setup-heroku.sh
 
           heroku container:release web -a $HEROKUAPP
-          heroku ps:scale web=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
+          heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
 
 workflows:
   build-deploy-test:
