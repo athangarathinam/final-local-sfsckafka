@@ -6,7 +6,7 @@ orbs:
 jobs:
   deploy-web:
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:stable
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
