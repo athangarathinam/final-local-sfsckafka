@@ -24,4 +24,4 @@ RUN update-ca-certificates && pip install --trusted-host pypi.python.org wheel \
     && pip install --trusted-host pypi.python.org -r requirements.txt
 
 # execute the Flask app
-CMD python kafka-salesforce-prod.py
+CMD python kafka-producer.py
