@@ -15,7 +15,7 @@ try:
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     print(connection.get_dsn_parameters(), "\n")
-    postgreSQL_select_Query = "select * from period"
+    postgreSQL_select_Query = "select * from salesforce.period"
 
     cursor.execute(postgreSQL_select_Query)
 
