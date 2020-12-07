@@ -5,41 +5,36 @@ Created on Sat Nov 28 02:15:31 2020
 @author: 950027
 """
 
-#import os 
-import json
-#import ssl
-import kafka_helper
+import os
+import psycopg2
+import serialization as serialization
 
-from kafka import KafkaProducer#,  KafkaConsumer
-from flask import Flask #, abort, request
-
-app = Flask(__name__)
-
-V_KAFKA_URL = 'kafka+ssl://ec2-52-34-50-81.us-west-2.compute.amazonaws.com:9096,kafka+ssl://ec2-44-237-88-58.us-west-2.compute.amazonaws.com:9096,kafka+ssl://ec2-44-240-24-130.us-west-2.compute.amazonaws.com:9096'
-V_SSL_CONTEXT = kafka_helper.get_kafka_ssl_context()
-KAFKA_TOPIC = 'salfrs_kafka_snowflake'
+from datetime import datetime
 
 
-# Create Producer Properties
-def fn_kafka_producer(acks='all',
-                       value_serializer=lambda v: json.dumps(v).encode('utf-8')):
-    kafkaprod = KafkaProducer(
-    bootstrap_servers = V_KAFKA_URL,
-    #key_serializer=key_serializer,
-    value_serializer =value_serializer,
-    ssl_context = V_SSL_CONTEXT,
-    acks = acks    
-    )
-    return kafkaprod
 
-if __name__ == '__main__':
-    # Create the Producer
-    PRODUCER = fn_kafka_producer()
-    
-    #Create a producer Record
-    PRODUCER.send(KAFKA_TOPIC,'Hello Heroku!!')
-    PRODUCER.flush()
-    
-    
-    # Create Producer Properties 
-    
+try:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = connection.cursor()
+    print(connection.get_dsn_parameters(), "\n")
+    postgreSQL_select_Query = "select * from period"
+
+    cursor.execute(postgreSQL_select_Query)
+
+    period_records = cursor.fetchall()
+
+    for row in period_records:
+        print("Id =", row[3], "\n")
+        print("IsForecastPeriod =", row[4])
+        print("PeriodLabel =", row[6], "\n")
+        print("QuarterLabel =", row[7], "\n")
+
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
+# finally:
+#     if (connection):
+#         cursor.close()
+#         connection.close()
+#         print("PostgreSQL connection is closed")
+#         print(str(datetime.now()) + ":All Feature Successfully completed\n")
