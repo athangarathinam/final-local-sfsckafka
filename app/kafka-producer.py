@@ -7,11 +7,8 @@ Created on Sat Nov 28 02:15:31 2020
 
 import os
 import psycopg2
-import serialization as serialization
 
 from datetime import datetime
-
-
 
 try:
     DATABASE_URL = os.environ['DATABASE_URL']
