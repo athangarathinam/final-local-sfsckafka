@@ -7,11 +7,12 @@ Created on Sat Nov 28 02:15:31 2020
 
 import os
 import psycopg2
+import kafka-helper
 
 from datetime import datetime
 
 KAFKA_TOPIC = 'salfrs_kafka_snowflake'
-PRODUCER = kafka_helper.get_kafka_producer()
+PRODUCER = kafka-helper.get_kafka_producer()
 
 
 print("Kafka Topic - ", KAFKA_TOPIC, "\n")
