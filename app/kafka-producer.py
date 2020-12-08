@@ -13,6 +13,10 @@ from datetime import datetime
 KAFKA_TOPIC = 'salfrs_kafka_snowflake'
 PRODUCER = kafka_helper.get_kafka_producer()
 
+
+print("Kafka Topic - ", KAFKA_TOPIC, "\n")
+print("Kafka PRODUCER - ", PRODUCER, "\n")
+
 if __name__ == '__main__':
     try:
          DATABASE_URL = os.environ['DATABASE_URL']
@@ -24,6 +28,9 @@ if __name__ == '__main__':
          cursor.execute(postgreSQL_select_Query)
 
          period_records = cursor.fetchall()
+            
+         period_JSON = '{{{}}}'.format(','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
+         print("Period JSON", period_JSON)            
 
          for row in period_records:
             print("Id =", row[3], "\n")
