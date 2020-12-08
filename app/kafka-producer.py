@@ -10,25 +10,29 @@ import psycopg2
 
 from datetime import datetime
 
-try:
-    DATABASE_URL = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    print(connection.get_dsn_parameters(), "\n")
-    postgreSQL_select_Query = "select * from salesforce.period"
+KAFKA_TOPIC = 'salfrs_kafka_snowflake'
+PRODUCER = kafka_helper.get_kafka_producer()
 
-    cursor.execute(postgreSQL_select_Query)
+if __name__ == '__main__':
+    try:
+         DATABASE_URL = os.environ['DATABASE_URL']
+         connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+         cursor = connection.cursor()
+         print(connection.get_dsn_parameters(), "\n")
+         postgreSQL_select_Query = "select * from salesforce.period"
 
-    period_records = cursor.fetchall()
+         cursor.execute(postgreSQL_select_Query)
 
-    for row in period_records:
-        print("Id =", row[3], "\n")
-        print("IsForecastPeriod =", row[4])
-        print("PeriodLabel =", row[6], "\n")
-        print("QuarterLabel =", row[7], "\n")
+         period_records = cursor.fetchall()
 
-except (Exception, psycopg2.Error) as error:
-    print("Error while connecting to PostgreSQL", error)
+         for row in period_records:
+            print("Id =", row[3], "\n")
+            print("IsForecastPeriod =", row[4])
+            print("PeriodLabel =", row[6], "\n")
+            print("QuarterLabel =", row[7], "\n")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error while connecting to PostgreSQL", error)
 # finally:
 #     if (connection):
 #         cursor.close()
