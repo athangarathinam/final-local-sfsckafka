@@ -14,7 +14,7 @@ from datetime import datetime
 #KAFKA_TOPIC = 'salfrs_kafka_snowflake'
 #PRODUCER = kafka_helper.get_kafka_producer()
 
-
+#print("=======printing Kafka Detils=======")
 #print("Kafka Topic - ", KAFKA_TOPIC, "\n")
 #print("Kafka PRODUCER - ", PRODUCER, "\n")
 
