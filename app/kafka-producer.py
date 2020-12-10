@@ -7,16 +7,16 @@ Created on Sat Nov 28 02:15:31 2020
 
 import os
 import psycopg2
-#import kafka_helper
+import kafka_helper
 
 from datetime import datetime
 
-#KAFKA_TOPIC = 'salfrs_kafka_snowflake'
-#PRODUCER = kafka_helper.get_kafka_producer()
+KAFKA_TOPIC = 'salfrs_kafka_snowflake'
+PRODUCER = kafka_helper.get_kafka_producer()
 
-#print("=======printing Kafka Detils=======")
-#print("Kafka Topic - ", KAFKA_TOPIC, "\n")
-#print("Kafka PRODUCER - ", PRODUCER, "\n")
+print("=======printing Kafka Detils=======")
+print("Kafka Topic - ", KAFKA_TOPIC, "\n")
+print("Kafka PRODUCER - ", PRODUCER, "\n")
 
 if __name__ == '__main__':
     try:
