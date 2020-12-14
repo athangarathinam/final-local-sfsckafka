@@ -2,7 +2,7 @@ import snowflake.connector
 import os
 import json
 # import ssl
-#import kafka-helper
+import kafka_helper
 from kafka import KafkaProducer  # ,  KafkaConsumer
 
 V_KAFKA_URL = os.environ.get('KAFKA_URL')
