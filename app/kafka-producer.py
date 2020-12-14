@@ -1,4 +1,13 @@
 import snowflake.connector
+import os
+import json
+# import ssl
+#import kafka-helper
+from kafka import KafkaProducer  # ,  KafkaConsumer
+
+V_KAFKA_URL = os.environ(KAFKA_URL)
+print(V_KAFKA_URL)
+
 conn= snowflake.connector.connect(
     account = 'wda05749',
     user = 'ATHANGARATHINAM',
@@ -9,4 +18,3 @@ conn= snowflake.connector.connect(
 cur = conn.cursor()
 tablval = cur.execute("select * from test1").fetchall()
 print(tablval)
-
