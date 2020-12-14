@@ -8,6 +8,7 @@ from kafka import KafkaProducer  # ,  KafkaConsumer
 V_KAFKA_URL = os.environ(KAFKA_URL)
 V_KAFKA_TRUSTED_CERT = os.environ(KAFKA_TRUSTED_CERT)
 print(V_KAFKA_URL)
+print(V_KAFKA_TRUSTED_CERT)
 
 conn= snowflake.connector.connect(
     account = 'wda05749',
