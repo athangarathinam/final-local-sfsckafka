@@ -9,6 +9,8 @@ V_KAFKA_URL = os.environ.get('KAFKA_URL')
 V_KAFKA_TRUSTED_CERT = os.environ.get('KAFKA_TRUSTED_CERT')
 print("Kafka URL" , V_KAFKA_URL)
 print("Kafka T_CERT", V_KAFKA_TRUSTED_CERT)
+V_SSL_CONTEXT = kafka_helper.get_kafka_ssl_context()
+print("SSL Context",V_SSL_CONTEXT)
 
 conn= snowflake.connector.connect(
     account = 'wda05749',
