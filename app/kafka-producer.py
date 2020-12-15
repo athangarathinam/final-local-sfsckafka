@@ -49,45 +49,45 @@ def get_kafka_consumer(topic=None,
 
 if __name__ == '__main__':
   print("Hi Main")
-    # Create the Producer
-    PRODUCER = fn_kafka_producer()
+  # Create the Producer
+  PRODUCER = fn_kafka_producer()
 
-    # Create a producer Record
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!123')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!1234')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12345')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
-    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12345')
-    PRODUCER.flush()
+  # Create a producer Record
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!123')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!1234')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12345')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
+  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12345')
+  PRODUCER.flush()
     
-    print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
-    #Create the Consumer
-    CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
-    print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
-    #CONSUMER.flush()
+  print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
+  #Create the Consumer
+  CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
+  print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
+  #CONSUMER.flush()
     
-    for message in CONSUMER:
-      print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
-      print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-                                              message.offset, message.key,
-                                                  message.value))
-      print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
-      print(message.value['Body'])  
-      print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
+  for message in CONSUMER:
+    print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
+    print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+                                          message.offset, message.key,
+                                          message.value))
+    print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
+    print(message.value['Body'])  
+    print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
     
     # Connect Snowflake
     conn= snowflake.connector.connect(
-        account = 'wda05749',
-        user = 'ATHANGARATHINAM',
-        password = 'Pradev2023',
-        database = 'SALES_FORCE_POC',
-        schema = 'PUBLIC',
-        warehouse = 'WH_SF_KAFKA_POC')
+      account = 'wda05749',
+      user = 'ATHANGARATHINAM',
+      password = 'Pradev2023',
+      database = 'SALES_FORCE_POC',
+      schema = 'PUBLIC',
+      warehouse = 'WH_SF_KAFKA_POC')
     cur = conn.cursor()
     tablval = cur.execute("select * from test1").fetchall()
     print(tablval)
