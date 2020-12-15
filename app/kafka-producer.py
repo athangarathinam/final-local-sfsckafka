@@ -55,11 +55,13 @@ def get_postgres_data():
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     print(connection.get_dsn_parameters(), "\n")
-    postgreSQL_select_Query = "select * from salesforce.period"
+    postgreSQL_select_Query = "select * from salesforce.period where startdate='''2010-01-01'''"
+    print(The value of postgreSQL_select_Query is -", postgreSQL_select_Query)
 
     cursor.execute(postgreSQL_select_Query)
 
     period_records = cursor.fetchall()
+    print("The value of period_records",period_records)
 
     period_JSON = '{{{}}}'.format(
       ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
