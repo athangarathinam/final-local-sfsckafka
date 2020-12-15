@@ -48,27 +48,28 @@ def get_kafka_consumer(topic=None,
 
     return consumer
   
-  def get_postgres_data():
-    try:
-      DATABASE_URL = os.environ['DATABASE_URL']
-      connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-      cursor = connection.cursor()
-      print(connection.get_dsn_parameters(), "\n")
-      postgreSQL_select_Query = "select * from salesforce.period"
+def get_postgres_data():
+  try:
+    
+    DATABASE_URL = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = connection.cursor()
+    print(connection.get_dsn_parameters(), "\n")
+    postgreSQL_select_Query = "select * from salesforce.period"
 
-      cursor.execute(postgreSQL_select_Query)
+    cursor.execute(postgreSQL_select_Query)
 
-      period_records = cursor.fetchall()
+    period_records = cursor.fetchall()
 
-      period_JSON = '{{{}}}'.format(
-        ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
-        print("Period JSON", period_JSON)
+    period_JSON = '{{{}}}'.format(
+      ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
+      print("Period JSON", period_JSON)
 
-      for row in period_records:
-        print("Id =", row[3], "\n")
-        print("IsForecastPeriod =", row[4])
-        print("PeriodLabel =", row[6], "\n")
-        print("QuarterLabel =", row[7], "\n")
+    for row in period_records:
+      print("Id =", row[3], "\n")
+      print("IsForecastPeriod =", row[4])
+      print("PeriodLabel =", row[6], "\n")
+      print("QuarterLabel =", row[7], "\n")
 
     except (Exception, psycopg2.Error) as error:
       print("Error while connecting to PostgreSQL", error)
