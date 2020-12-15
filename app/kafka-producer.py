@@ -3,6 +3,7 @@ import os
 import json
 import ssl
 import kafka_helper
+import psycopg2
 from kafka import KafkaProducer   ,  KafkaConsumer
 
 V_KAFKA_URL = os.environ.get('KAFKA_URL')
