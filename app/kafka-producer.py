@@ -40,7 +40,7 @@ def get_kafka_consumer(topic=None,
         #bootstrap_servers=get_kafka_brokers(),
         bootstrap_servers=V_KAFKA_URL.split(",")[0].replace("kafka+ssl://",""),
         security_protocol='SSL',
-        ssl_context=get_kafka_ssl_context(),
+        ssl_context=V_SSL_CONTEXT,
         value_deserializer=value_deserializer
     )
 
