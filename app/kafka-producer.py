@@ -15,11 +15,12 @@ print("SSL Context",V_SSL_CONTEXT)
 KAFKA_TOPIC = 'salfrs_kafka_snowflake'
 
 
+
 # Create Producer Properties
 def fn_kafka_producer(acks='all',
                       value_serializer=lambda v: json.dumps(v).encode('utf-8')):
     kafkaprod = KafkaProducer(
-        bootstrap_servers=V_KAFKA_URL,
+        bootstrap_servers=V_KAFKA_URL.split(",")[0].replace("kafka+ssl://",""),
         # key_serializer=key_serializer,
         value_serializer=value_serializer,
         ssl_context=V_SSL_CONTEXT,
