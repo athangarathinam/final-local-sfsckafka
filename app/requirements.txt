@@ -3,8 +3,8 @@ cffi==1.14.4
 cryptography==3.2.1
 enum34==1.1.10
 ipaddress==1.0.23
-kafka==1.3.5
-kafka-helper==0.1
+kafka
+kafka-helper
 kafka-python
 psycopg2==2.8.6
 psycopg2-binary==2.8.6
