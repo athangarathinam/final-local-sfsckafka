@@ -76,8 +76,8 @@ def get_postgres_data():
 
     return period_JSON
 
-  except (Exception, psycopg2.Error) as error:
-    print("Error while connecting to PostgreSQL", error)
+   except (Exception, psycopg2.Error) as error:
+      print("Error while connecting to PostgreSQL", error)
 
 if __name__ == '__main__':
   print("Hi Main")
