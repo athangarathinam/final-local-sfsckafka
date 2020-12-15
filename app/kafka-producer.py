@@ -48,6 +48,7 @@ def get_kafka_consumer(topic=None,
     return consumer 
 
 if __name__ == '__main__':
+  print("Hi Main")
     # Create the Producer
     PRODUCER = fn_kafka_producer()
 
