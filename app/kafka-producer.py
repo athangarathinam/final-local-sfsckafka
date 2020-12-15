@@ -27,8 +27,7 @@ def fn_kafka_producer(acks='all',
     )
     return kafkaprod
   
- def get_kafka_consumer(topic=None,
-                       value_deserializer=lambda v: json.loads(v.decode('utf-8'))):
+ def get_kafka_consumer(topic=None,value_deserializer=lambda v: json.loads(v.decode('utf-8'))):
     """
     Return a KafkaConsumer that uses the SSLContext created with create_ssl_context.
     """
