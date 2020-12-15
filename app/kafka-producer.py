@@ -74,7 +74,7 @@ def get_postgres_data():
       print("PeriodLabel =", row[6], "\n")
       print("QuarterLabel =", row[7], "\n")
 
-  return period_JSON
+    return period_JSON
 
   except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
