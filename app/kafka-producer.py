@@ -63,7 +63,8 @@ def get_postgres_data():
 
     period_JSON = '{{{}}}'.format(
       ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
-      print("Period JSON", period_JSON)
+    
+    print("Period JSON", period_JSON)
 
     for row in period_records:
       print("Id =", row[3], "\n")
