@@ -74,10 +74,10 @@ def get_postgres_data():
       print("PeriodLabel =", row[6], "\n")
       print("QuarterLabel =", row[7], "\n")
 
-   except (Exception, psycopg2.Error) as error:
+  return period_JSON
+
+  except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
-      
-    return period_JSON
 
 if __name__ == '__main__':
   print("Hi Main")
