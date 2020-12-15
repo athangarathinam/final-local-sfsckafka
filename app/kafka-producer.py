@@ -49,7 +49,7 @@ def get_kafka_consumer(topic=None,
     return consumer
   
 def get_postgres_data():
-  try:
+   try:
     
     DATABASE_URL = os.environ['DATABASE_URL']
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -72,8 +72,8 @@ def get_postgres_data():
       print("PeriodLabel =", row[6], "\n")
       print("QuarterLabel =", row[7], "\n")
 
-    except (Exception, psycopg2.Error) as error:
-      print("Error while connecting to PostgreSQL", error)
+   except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
       
     return period_JSON
 
