@@ -35,6 +35,7 @@ def get_kafka_consumer(topic=None,
 
     # Create the KafkaConsumer connected to the specified brokers. Use the
     # SSLContext that is created with create_ssl_context.
+    print("Topic Used - ---",  topic)
     consumer = KafkaConsumer(
         topic,
         #bootstrap_servers=get_kafka_brokers(),
@@ -52,12 +53,22 @@ if __name__ == '__main__':
 
     # Create a producer Record
     PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!123')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!1234')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12345')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
+    PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12345')
     PRODUCER.flush()
     
-    
+    print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
     #Create the Consumer
     CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
     print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
+    #CONSUMER.flush()
     
     for message in CONSUMER:
       print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
