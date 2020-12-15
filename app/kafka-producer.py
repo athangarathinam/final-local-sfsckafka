@@ -24,7 +24,8 @@ def fn_kafka_producer(acks='all',
         # key_serializer=key_serializer,
         value_serializer=value_serializer,
         ssl_context=V_SSL_CONTEXT,
-        acks=acks
+        acks=acks,
+        security_protocol="SSL"
     )
     return kafkaprod
 
