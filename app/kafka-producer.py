@@ -45,7 +45,34 @@ def get_kafka_consumer(topic=None,
         value_deserializer=value_deserializer
     )
 
-    return consumer 
+    return consumer
+  
+  def get_postgres_data():
+    try:
+      DATABASE_URL = os.environ['DATABASE_URL']
+      connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+      cursor = connection.cursor()
+      print(connection.get_dsn_parameters(), "\n")
+      postgreSQL_select_Query = "select * from salesforce.period"
+
+      cursor.execute(postgreSQL_select_Query)
+
+      period_records = cursor.fetchall()
+
+      period_JSON = '{{{}}}'.format(
+        ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
+        print("Period JSON", period_JSON)
+
+      for row in period_records:
+        print("Id =", row[3], "\n")
+        print("IsForecastPeriod =", row[4])
+        print("PeriodLabel =", row[6], "\n")
+        print("QuarterLabel =", row[7], "\n")
+
+    except (Exception, psycopg2.Error) as error:
+      print("Error while connecting to PostgreSQL", error)
+      
+    return period_JSON
 
 if __name__ == '__main__':
   print("Hi Main")
@@ -53,16 +80,19 @@ if __name__ == '__main__':
   PRODUCER = fn_kafka_producer()
 
   # Create a producer Record
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!123')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!1234')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12345')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
-  PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12345')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!123')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!1234')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!12345')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!12')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
+#   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
+
+  v_postgres_tbl_data = get_postgres_data()
+  print("The value of postgres data is ", v_postgres_tbl_data)
+  PRODUCER.send(KAFKA_TOPIC, v_postgres_tbl_data)
   PRODUCER.flush()
     
   print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
