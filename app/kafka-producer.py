@@ -55,7 +55,8 @@ def get_postgres_data():
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     print(connection.get_dsn_parameters(), "\n")
-    postgreSQL_select_Query = "select * from salesforce.period where startdate='''2010-01-01'''"
+    #postgreSQL_select_Query = "select * from salesforce.period where startdate='''2010-01-01'''"
+    postgreSQL_select_Query = "SELECT array_to_json(array_agg(row_to_json(u))) FROM salesforce.period prd where startdate='''2010-01-01'''"
     print("The value of postgreSQL_select_Query is -", postgreSQL_select_Query)
 
     cursor.execute(postgreSQL_select_Query)
@@ -63,16 +64,16 @@ def get_postgres_data():
     period_records = cursor.fetchall()
     print("The value of period_records",period_records)
 
-    period_JSON = '{{{}}}'.format(
-      ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
+    #period_JSON = '{{{}}}'.format(
+     # ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
     
     print("Period JSON", period_JSON)
 
-    for row in period_records:
-      print("Id =", row[3], "\n")
-      print("IsForecastPeriod =", row[4])
-      print("PeriodLabel =", row[6], "\n")
-      print("QuarterLabel =", row[7], "\n")
+    #for row in period_records:
+     # print("Id =", row[3], "\n")
+      #print("IsForecastPeriod =", row[4])
+      #print("PeriodLabel =", row[6], "\n")
+      #print("QuarterLabel =", row[7], "\n")
 
     return period_JSON
 
