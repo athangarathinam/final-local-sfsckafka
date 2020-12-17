@@ -97,7 +97,7 @@ if __name__ == '__main__':
 #   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
 
   v_postgres_tbl_data = get_postgres_data()
-  print("The value of postgres data is ", v_postgres_tbl_data)
+  print("The value of postgres data is  v_postgres_tbl_data)
   PRODUCER.send(KAFKA_TOPIC, v_postgres_tbl_data)
   PRODUCER.flush()
     
