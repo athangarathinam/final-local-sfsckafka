@@ -101,7 +101,7 @@ if __name__ == '__main__':
   v_postgres_tbl_data = get_postgres_data()
   print("The value of postgres data is",  v_postgres_tbl_data)
   PRODUCER.send(V_KAFKA_TOPIC, v_postgres_tbl_data)
-  PRODUCER.flush()
+  PRODUCER.close()
     
   print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
   #Create the Consumer
