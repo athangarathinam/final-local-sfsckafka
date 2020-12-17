@@ -56,7 +56,7 @@ def get_postgres_data():
     cursor = connection.cursor()
     print(connection.get_dsn_parameters(), "\n")
     #postgreSQL_select_Query = "select * from salesforce.period where startdate='''2010-01-01'''"
-    postgreSQL_select_Query = "SELECT array_to_json(array_agg(row_to_json(u))) FROM salesforce.period prd where startdate='''2010-01-01'''"
+    postgreSQL_select_Query = "SELECT array_to_json(array_agg(row_to_json(prd))) FROM salesforce.period prd where startdate='''2010-01-01'''"
     print("The value of postgreSQL_select_Query is -", postgreSQL_select_Query)
 
     cursor.execute(postgreSQL_select_Query)
