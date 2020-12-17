@@ -67,7 +67,7 @@ def get_postgres_data():
     #period_JSON = '{{{}}}'.format(
      # ','.join(['{}:{}'.format(json.dumps(k), json.dumps(v)) for k, v in period_records]))
     
-    print("Period JSON", period_JSON)
+    #print("Period JSON", period_JSON)
 
     #for row in period_records:
      # print("Id =", row[3], "\n")
@@ -75,7 +75,7 @@ def get_postgres_data():
       #print("PeriodLabel =", row[6], "\n")
       #print("QuarterLabel =", row[7], "\n")
 
-    return period_JSON
+    return period_records
 
   except (Exception, psycopg2.Error) as error:
       print("Error while connecting to PostgreSQL", error)
