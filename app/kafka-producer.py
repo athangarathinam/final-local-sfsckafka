@@ -96,9 +96,11 @@ if __name__ == '__main__':
 #   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!123')
 #   PRODUCER.send(KAFKA_TOPIC, 'Hello Pstgres!!1234')
 
+  V_KAFKA_TOPIC = 'salfrs_kafka_snowflake'
+
   v_postgres_tbl_data = get_postgres_data()
   print("The value of postgres data is",  v_postgres_tbl_data)
-  PRODUCER.send(KAFKA_TOPIC, v_postgres_tbl_data)
+  PRODUCER.send(V_KAFKA_TOPIC, v_postgres_tbl_data)
   PRODUCER.flush()
     
   print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
