@@ -83,7 +83,7 @@ def get_postgres_data():
 if __name__ == '__main__':
   print("Hi Main")
   # Create the Producer
-  #PRODUCER = fn_kafka_producer()
+  PRODUCER = fn_kafka_producer()
 
   # Create a producer Record
 #   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
@@ -98,10 +98,10 @@ if __name__ == '__main__':
 
   V_KAFKA_TOPIC = 'salfrs_kafka_snowflake'
 
-  #v_postgres_tbl_data = get_postgres_data()
-  #print("The value of postgres data is",  v_postgres_tbl_data)
-  #PRODUCER.send(V_KAFKA_TOPIC, v_postgres_tbl_data)
-  #PRODUCER.close()
+  v_postgres_tbl_data = get_postgres_data()
+  print("The value of postgres data is",  v_postgres_tbl_data)
+  PRODUCER.send(V_KAFKA_TOPIC, v_postgres_tbl_data)
+  PRODUCER.close()
     
   print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
   #Create the Consumer
