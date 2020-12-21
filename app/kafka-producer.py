@@ -109,14 +109,14 @@ if __name__ == '__main__':
   print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
   #CONSUMER.flush()
     
-  for message in CONSUMER:
-    print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
+#   for message in CONSUMER:
+#     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
 #     print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
 #                                           message.offset, message.key,
 #                                           message.value))
-    print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
+#     print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
 #     print(message.value['Body'])  
-    print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
+#     print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
     
 #     # Connect Snowflake
 #     conn= snowflake.connector.connect(
