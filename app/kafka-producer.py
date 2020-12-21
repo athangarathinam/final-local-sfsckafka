@@ -115,7 +115,7 @@ if __name__ == '__main__':
 #                                           message.offset, message.key,
 #                                           message.value))
     print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
-    print(message.value['Body'])  
+#     print(message.value['Body'])  
     print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
     
 #     # Connect Snowflake
