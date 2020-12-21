@@ -108,6 +108,8 @@ if __name__ == '__main__':
   CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
   print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
   #CONSUMER.flush()
+  
+  print( "CONSUMER IS -", CONSUMER)
     
 #   for message in CONSUMER:
 #     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
