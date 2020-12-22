@@ -110,10 +110,7 @@ if __name__ == '__main__':
   #CONSUMER.flush()
   
   print( "CONSUMER IS -", V_CONSUMER)
-  
-  for m in V_CONSUMER:
-    print("Message -", m)
-    
+   
 #   for message in CONSUMER:
 #     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
 #     print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
