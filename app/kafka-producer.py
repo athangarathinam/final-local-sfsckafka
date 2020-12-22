@@ -105,11 +105,14 @@ if __name__ == '__main__':
     
   print("Consumer Test First @@@@@@@@@@@@@@ -- 123456789")
   #Create the Consumer
-  CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
+  V_CONSUMER = get_kafka_consumer(topic='salfrs_kafka_snowflake')
   print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
   #CONSUMER.flush()
   
-  print( "CONSUMER IS -", CONSUMER)
+  print( "CONSUMER IS -", V_CONSUMER)
+  
+  for m in V_CONSUMER:
+    print("Message -", m)
     
 #   for message in CONSUMER:
 #     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
