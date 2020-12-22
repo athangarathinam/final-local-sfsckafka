@@ -112,11 +112,11 @@ if __name__ == '__main__':
   
   print( "CONSUMER IS -", V_CONSUMER)
    
-  for message in V_CONSUMER:
+#   for message in V_CONSUMER:
 #     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
-    print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-                                          message.offset, message.key,
-                                          message.value))
+#     print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+#                                           message.offset, message.key,
+#                                           message.value))
 #     print("Consumer Test After For loop @@@@@@@@@@@@@@ -- 123456789")
 #     print(message.value['Body'])  
 #     print("Consumer Test After Body Print @@@@@@@@@@@@@@ -- 123456789")
