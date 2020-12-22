@@ -84,6 +84,7 @@ if __name__ == '__main__':
   print("Hi Main")
   # Create the Producer
   PRODUCER = fn_kafka_producer()
+  print("KAFKA PRODUCER -", PRODUCER)
 
   # Create a producer Record
 #   PRODUCER.send(KAFKA_TOPIC, 'Hello Heroku!!')
@@ -109,7 +110,7 @@ if __name__ == '__main__':
   print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
   #CONSUMER.flush()
   
-  print( "CONSUMER IS -", json.loads(V_CONSUMER))
+  print( "CONSUMER IS -", V_CONSUMER)
    
 #   for message in CONSUMER:
 #     print("Consumer Test Inside FOr loop @@@@@@@@@@@@@@ -- 123456789")
