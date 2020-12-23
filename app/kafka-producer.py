@@ -112,7 +112,7 @@ if __name__ == '__main__':
   
   print( "CONSUMER IS -", type(V_CONSUMER))
   
-  with open(os.path.join("\tmp\consumerdata\","period.json"),"w") as snowstg:
+  with open("/tmp/consumerdata/period.json","w") as snowstg:
                          snowstg.write(V_CONSUMER)
                          
     #json.dumps(V_CONSUMER, snowstg)
