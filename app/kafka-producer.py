@@ -112,8 +112,16 @@ if __name__ == '__main__':
   
   print( "CONSUMER IS -", type(V_CONSUMER))
   
-  with open("/tmp/consumerdata/period.json","w") as snowstg:
-                         snowstg.write(V_CONSUMER)
+  try:
+    with open("/tmp/consumerdata/period.json","w") as snowstg:
+      snowstg.write(V_CONSUMER)
+  except (IOError, ValueError, EOFError) as e:
+    print("Error as IOError, ValueError, EOFError", e)
+  except:
+    print("Error with other category")
+  finally:
+    print("Finally Error")
+   
                          
     #json.dumps(V_CONSUMER, snowstg)
    
