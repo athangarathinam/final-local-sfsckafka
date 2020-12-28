@@ -110,7 +110,7 @@ if __name__ == '__main__':
   print("Consumer Test @@@@@@@@@@@@@@ -- 123456789")
   #CONSUMER.flush()
   
-  print( "CONSUMER IS -", V_CONSUMER)
+  print( "CONSUMER IS -", str(V_CONSUMER))
   
   try:
     #with open("/opt/consumerdata/period.json","w") as snowstg:
