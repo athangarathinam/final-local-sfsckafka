@@ -118,8 +118,8 @@ if __name__ == '__main__':
       snowstg.write(V_CONSUMER)
   except (IOError, ValueError, EOFError) as e:
     print("Error as IOError, ValueError, EOFError", e)
-  except:
-    print("Error with other category")
+  except OSError as err:
+    print("Error with other category",.format(err))
   finally:
     print("Finally Error")
    
