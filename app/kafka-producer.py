@@ -113,7 +113,8 @@ if __name__ == '__main__':
   print( "CONSUMER IS -", type(V_CONSUMER))
   
   try:
-    with open("/opt/consumerdata/period.json","w") as snowstg:
+    #with open("/opt/consumerdata/period.json","w") as snowstg:
+    with open("/tmp/period.json","w") as snowstg:
       snowstg.write(V_CONSUMER)
   except (IOError, ValueError, EOFError) as e:
     print("Error as IOError, ValueError, EOFError", e)
