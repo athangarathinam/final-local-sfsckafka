@@ -119,7 +119,7 @@ if __name__ == '__main__':
   except (IOError, ValueError, EOFError) as e:
     print("Error as IOError, ValueError, EOFError", e)
   except OSError as err:
-    print("Error with other category",.format(err))
+    print("OS error: {0}".format(err))
   finally:
     print("Finally Error")
    
