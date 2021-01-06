@@ -10,4 +10,4 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
 
 # RUN update-ca-certificates
-CMD curl -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties http://localhost:8083/connectors
+CMD curl -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
