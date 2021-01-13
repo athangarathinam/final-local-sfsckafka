@@ -24,7 +24,8 @@ COPY app/connect-distributed.properties /tmp
 
 # datagen config
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
-RUN confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:0.1.0
+#RUN confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:0.1.0
+RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
 
 # # and internal root ca certs
 # COPY .build/certs/*.crt /usr/local/share/ca-certificates/
