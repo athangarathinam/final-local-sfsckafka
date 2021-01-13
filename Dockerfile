@@ -17,7 +17,7 @@ RUN curl -sSL "https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.12.
 RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar" -o /etc/kafka-connect/jars/bc-fips-1.0.2.jar
 RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar" -o /etc/kafka-connect/jars/bcpkix-fips-1.0.5.jar
 # copy the properties file
-COPY app/connect-distributed.properties /tmp
+#COPY app/connect-distributed.properties /tmp
 
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar /etc/kafka-connect/jars/
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/
@@ -29,8 +29,8 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 
 # # and internal root ca certs
 # COPY .build/certs/*.crt /usr/local/share/ca-certificates/
-#COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
+COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
 
 # RUN update-ca-certificates
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
-CMD curl -vvv -X POST -H "Content-Type: application/json" --data /tmp/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
+CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
