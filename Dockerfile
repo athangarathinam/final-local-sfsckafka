@@ -31,4 +31,5 @@ RUN confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:0.1.0
 #COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
 
 # RUN update-ca-certificates
-CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
+#CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
+CMD curl -vvv POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
