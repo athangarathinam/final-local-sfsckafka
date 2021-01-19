@@ -11,9 +11,9 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 #RUN apt-get install vim
 
 #!/usr/bin/env bash
-curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
-mkdir vim && tar xzvf vim.tar.gz -C vim
-export PATH=$PATH:/app/vim/bin
+RUN curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
+RUN mkdir vim && tar xzvf vim.tar.gz -C vim
+RUN export PATH=$PATH:/app/vim/bin
 
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
