@@ -7,8 +7,8 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 #RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
 
 #install vim and update 
-RUN sudo apt-get update
-RUN sudo apt-get install vim
+RUN apt-get update
+RUN apt-get install vim
 
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
