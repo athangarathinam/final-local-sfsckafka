@@ -10,7 +10,7 @@ ENV GETUPD=y
 
 #install vim and update 
 RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb
-RUN apt-get update
+RUN apt-get update ${GETUPD}
 #RUN apt-get install vim
 
 #!/usr/bin/env bash
