@@ -7,8 +7,13 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 #RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
 
 #install vim and update 
-RUN apt-get update
-RUN apt-get install vim
+#RUN apt-get update
+#RUN apt-get install vim
+
+#!/usr/bin/env bash
+curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
+mkdir vim && tar xzvf vim.tar.gz -C vim
+export PATH=$PATH:/app/vim/bin
 
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
