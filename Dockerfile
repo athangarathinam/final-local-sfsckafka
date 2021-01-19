@@ -15,7 +15,7 @@ RUN apt-get update
 
 #!/usr/bin/env bash
 RUN curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
-RUN mkdir vim && tar xzvf vim.tar.gz -C vim
+RUN mkdir vim && tar xvf vim.tar.gz -C vim
 RUN export PATH=$PATH:/app/vim/bin
 
 # Create plugin directory
