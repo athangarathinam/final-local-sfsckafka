@@ -46,9 +46,9 @@ RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar /etc/kafka-connect/jars/
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/
 
-COPY /app/start.sh /etc/kafka/
-RUN chmod +x /etc/kafka/start.sh
-RUN ./etc/kafka/start.sh
+#COPY /app/start.sh /etc/kafka/
+#RUN chmod +x /etc/kafka/start.sh
+#RUN ./etc/kafka/start.sh
 
 # datagen config
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
@@ -61,4 +61,9 @@ COPY app/connect-distributed.properties /etc/kafka/connect-distributed.propertie
 
 # RUN update-ca-certificates
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
-CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
+#CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
+CMD java -jar "/usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar" \
+   && java -jar "/usr/share/java/kafka-connect-jdbc/snowflake-jdbc-connector-3.12.17.jar" \
+   && java -jar "/etc/kafka-connect/jars/bc-fips-1.0.2.jar \
+   && java -jar "/etc/kafka-connect/jars/bcpkix-fips-1.0.5.jar \
+   && curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
