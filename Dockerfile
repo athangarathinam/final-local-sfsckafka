@@ -47,7 +47,7 @@ RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/
 
 COPY /app/start.sh /etc/kafka/
-RUN ./usr/src/start.sh
+RUN ./etc/kafka/start.sh
 
 # datagen config
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
