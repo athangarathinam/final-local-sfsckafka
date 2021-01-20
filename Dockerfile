@@ -12,6 +12,7 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
 RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
     && apt-get update \
+    && apt-get install unzip \
     && apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
     vim
         
