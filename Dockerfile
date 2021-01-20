@@ -10,8 +10,9 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
- RUN apt-get update -y \
-    && apt-get install vim
+RUN apt-get update \
+    && apt-get install -y \
+        vim
 
 #!/usr/bin/env bash
 #RUN curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
