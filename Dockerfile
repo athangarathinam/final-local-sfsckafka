@@ -10,7 +10,8 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
-RUN apt-get update \
+RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
+    && apt-get update \
     && apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
     vim
         
@@ -45,7 +46,7 @@ RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar /etc/kafka-connect/jars/
 #COPY https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/
 
-COPY /app/start.sh /usr/src/
+COPY /app/start.sh /etc/kafka/
 RUN ./usr/src/start.sh
 
 # datagen config
