@@ -24,6 +24,7 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
 RUN mkdir -p /usr/share/java/kafka-connect-jdbc
+RUN mkdir -p /etc/kafka/kafka-logs
 
 # Add Snowflake connector jar
 RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar" -o /usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar
