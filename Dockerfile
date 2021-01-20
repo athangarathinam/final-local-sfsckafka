@@ -27,7 +27,7 @@ RUN mkdir -p /usr/share/java/kafka-connect-jdbc
 RUN mkdir -p /etc/kafka/kafka-logs
 
 # Add Snowflake connector jar
-RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.0/snowflake-kafka-connector-1.5.0.jar" -o /usr/share/java/plugins/snowflake-kafka-connector-1.5.0.jar
+RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.0/snowflake-kafka-connector-1.5.1.jar" -o /usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar
 #CMD ["java","-jar","/usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar"]
 
 # Add Snowflake JDBC connector jar
@@ -63,7 +63,7 @@ COPY app/connect-distributed.properties /etc/kafka/connect-distributed.propertie
 # RUN update-ca-certificates
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors
-CMD java -jar "/usr/share/java/plugins/snowflake-kafka-connector-1.5.0.jar" \
+CMD java -jar "/usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar" \
    && java -jar "/usr/share/java/kafka-connect-jdbc/snowflake-jdbc-connector-3.12.17.jar" \
    && java -jar "/etc/kafka-connect/jars/bc-fips-1.0.2.jar \
    && java -jar "/etc/kafka-connect/jars/bcpkix-fips-1.0.5.jar \
