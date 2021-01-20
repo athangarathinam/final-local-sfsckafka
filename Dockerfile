@@ -11,7 +11,7 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install --force-y \
         vim
 
 #!/usr/bin/env bash
