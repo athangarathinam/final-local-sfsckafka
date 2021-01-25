@@ -5,7 +5,7 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 
 # Install Snowflake Kafka Connector
 #RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
-confluent-hub install snowflakeinc/snowflake-kafka-connector:1.5.1
+RUN confluent-hub install snowflakeinc/snowflake-kafka-connector:1.5.1
 
 #ENV GETUPD=y
 
