@@ -33,7 +33,7 @@ RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-conn
 RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar" -o /usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar
 #CMD ["java","-jar","/usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar"]
 
-COPY /usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar /etc/kafka/snowflake-kafka-connector-1.5.1.jar
+#COPY /usr/share/java/plugins/snowflake-kafka-connector-1.5.1.jar /etc/kafka/snowflake-kafka-connector-1.5.1.jar
 
 # Add Snowflake JDBC connector jar
 RUN curl -sSL "https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.12.17/snowflake-jdbc-3.12.17.jar" -o /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-connector-3.12.17.jar
