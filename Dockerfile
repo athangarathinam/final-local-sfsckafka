@@ -6,7 +6,7 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 
 ENV kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 ENV prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
-ENV kafka_prefix=$(echo ${!prefix_env_var})
+ENV kafka_prefix=$(echo ${prefix_env_var})
 ENV kafka_url_env_var="$(echo $kafka_addon_name)_URL"
 ENV postgres_addon_name=${POSTGRES_ADDON:-DATABASE}
 
