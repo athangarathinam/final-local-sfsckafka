@@ -4,8 +4,8 @@ FROM confluentinc/cp-kafka-connect:5.3.1
 
 kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
-kafka_prefix=$(echo ${!prefix_env_var})
-kafka_url_env_var="$(echo $kafka_addon_name)_URL"
+#kafka_prefix=$(echo ${!prefix_env_var})
+#kafka_url_env_var="$(echo $kafka_addon_name)_URL"
 
 #ENV GETUPD=y
 
@@ -33,7 +33,7 @@ RUN mkdir -p /etc/kafka/kafka-logs
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 ENV CONNECT_REST_PORT=$PORT
 ENV bootstrap.servers=${!kafka_url_env_var//kafka+ssl:\/\//}
-ENV group.id=$(echo $kafka_prefix)connect-cluster
+#ENV group.id=$(echo $kafka_prefix)connect-cluster
 
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
