@@ -27,9 +27,14 @@ RUN mkdir -p /etc/kafka/kafka-logs
 # Confluent Hub Config and Installs
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 ENV CONNECT_REST_PORT=$PORT
+ENV bootstrap.servers=${!kafka_url_env_var//kafka+ssl:\/\//}
+ENV group.id=$(echo $kafka_prefix)connect-cluster
+
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1
-RUN confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
+ && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
+
+
 
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
