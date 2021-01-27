@@ -2,6 +2,11 @@
 #FROM confluentinc/cp-kafka-connect-base
 FROM confluentinc/cp-kafka-connect:5.3.1
 
+kafka_addon_name=${KAFKA_ADDON:-KAFKA}
+prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
+kafka_prefix=$(echo ${!prefix_env_var})
+kafka_url_env_var="$(echo $kafka_addon_name)_URL"
+
 #ENV GETUPD=y
 
 #install vim and update 
