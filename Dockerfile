@@ -33,7 +33,7 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 
 RUN chmod +x /etc/kafka/start.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
-ENTRYPOINT ["/etc/kafka/start.sh"]
+CMD ["/etc/kafka/start.sh"]
 
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
