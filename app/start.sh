@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #cd /usr/share/java/plugins
 #java -jar snowflake-kafka-connector-1.5.1.jar
 
