@@ -16,6 +16,7 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 # Copy config and certs
 COPY .build/certs/*.crt /usr/local/share/ca-certificates/
 COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
+COPY app/start.sh /etc/kafka/start.sh
 
 RUN update-ca-certificates
 
@@ -25,12 +26,12 @@ RUN mkdir -p /usr/share/java/kafka-connect-jdbc
 RUN mkdir -p /etc/kafka/kafka-logs
 
 # Confluent Hub Config and Installs
-ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
-
+ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
