@@ -1,6 +1,6 @@
 # this is an official Python runtime, used as the parent image
 #FROM confluentinc/cp-kafka-connect-base
-FROM confluentinc/cp-kafka-connect:5.3.1
+FROM confluentinc/cp-kafka-connect:5.5.1
 
 #ENV GETUPD=y
 
