@@ -60,7 +60,7 @@ echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 #REST_ADVERTISED_HOST_NAME="localhost"
 #PLUGIN_PATH=/usr/share/java
 
-echo Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS 
+echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
