@@ -22,7 +22,7 @@ SERVER_HOST=$HEROKU_APP_NAME.herokuapp.com
 SERVER_URL=https://$SERVER_HOST
 
 
-print("======== Before PORT =====" , $PORT)
+echo "======== Before PORT ====="
 
 #export CONNECT_REST_PORT=$PORT
 #export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
@@ -30,7 +30,7 @@ print("======== Before PORT =====" , $PORT)
 export REST_PORT=$PORT
 export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
-print("======== After PORT =====")
+echo "======== After PORT ====="
 
 kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
@@ -38,7 +38,7 @@ kafka_prefix=$(echo ${!prefix_env_var})
 kafka_url_env_var="$(echo $kafka_addon_name)_URL"
 postgres_addon_name=${POSTGRES_ADDON:-DATABASE}
 
-print("======== After postgres_addon_name =====")
+echo "======== After postgres_addon_name ====="
 
 #CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
@@ -55,7 +55,7 @@ CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 #CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
-print("======== After CONNECT_STATUS_STORAGE_TOPIC =====")
+echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 
 #CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 #CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
@@ -72,7 +72,7 @@ INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 REST_ADVERTISED_HOST_NAME="localhost"
 PLUGIN_PATH=/usr/share/java
 
-print("======== After CONNECT_PLUGIN_PATH =====")
+echo "======== After CONNECT_PLUGIN_PATH ====="
 
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
 sleep infinity
