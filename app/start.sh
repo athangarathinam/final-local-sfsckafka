@@ -28,19 +28,19 @@ echo "Variables: $kafka_addon_name $prefix_env_var $kafka_prefix $kafka_url_env_
 
 echo "======== After postgres_addon_name ====="
 
-export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
+#export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 #BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 
-export CONNECT_GROUP_ID=$(echo $kafka_prefix)connect-cluster
+export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
-export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
+export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
 #OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
 
-export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
+export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
 #CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 
-export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
+export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
 #STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
 echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
@@ -59,6 +59,8 @@ echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 #INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 #REST_ADVERTISED_HOST_NAME="localhost"
 #PLUGIN_PATH=/usr/share/java
+
+echo Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS 
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
