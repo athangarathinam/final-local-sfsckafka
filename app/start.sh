@@ -16,7 +16,7 @@
 
 echo $HEROKU_APP_NAME
 
-print("======== HEROKU_APP_NAME =====",$HEROKU_APP_NAME)
+print("======== HEROKU_APP_NAME =====")
 
 SERVER_HOST=$HEROKU_APP_NAME.herokuapp.com
 SERVER_URL=https://$SERVER_HOST
