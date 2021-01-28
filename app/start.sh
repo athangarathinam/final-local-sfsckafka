@@ -45,20 +45,11 @@ export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
 
 echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 
-#CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#CONNECT_REST_ADVERTISED_HOST_NAME="localhost"
-#CONNECT_PLUGIN_PATH=/usr/share/java
+export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 
-
-#KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-#REST_ADVERTISED_HOST_NAME="localhost"
-#PLUGIN_PATH=/usr/share/java
 
 echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
