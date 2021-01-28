@@ -31,7 +31,8 @@ ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/et
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
-ENTRYPOINT ["source", "/etc/kafka/start.sh"]
+#ENTRYPOINT ["source", "/etc/kafka/start.sh"]
+ENTRYPOINT ["/etc/kafka/start.sh"]
 
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
