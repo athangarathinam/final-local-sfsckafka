@@ -35,7 +35,7 @@ CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets \
 
 CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs \
 
-CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status \vvvvvvvvvvvvvvvvv
+CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status \
 
 CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter" \
 CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter" \
