@@ -61,7 +61,8 @@ echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 #PLUGIN_PATH=/usr/share/java
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
-
+echo "============Starting Process========= "
+/etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
