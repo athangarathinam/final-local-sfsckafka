@@ -11,8 +11,8 @@ SERVER_URL=https://$SERVER_HOST
 #client_cert=os.environ.get('KAFKA_CLIENT_CERT')
 #trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
 
-source /certs/setup-certs.sh
-#./etc/kafka/setup-certs.sh
+#source /certs/setup-certs.sh
+./etc/kafka/setup-certs.sh
 
 echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
@@ -27,6 +27,14 @@ export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 #export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
 echo "======== After PORT ====="
+
+security.protocol=SSL
+ssl.truststore.location=$HOME/.truststore.jks
+ssl.truststore.password=$TRUSTSTORE_PASSWORD
+ssl.keystore.location=$HOME/.keystore.jks
+ssl.keystore.password=$KEYSTORE_PASSWORD
+ssl.key.password=$KEYSTORE_PASSWORD
+ssl.endpoint.identification.algorithm=
 
 kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
