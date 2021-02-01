@@ -68,15 +68,15 @@ export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConve
 
 ####  Keystore and Truststore Generation Start 
 
-[ -z $TRUSTSTORE_PASSWORD ] && {
-  echo "TRUSTSTORE_PASSWORD is missing" >&2
-  exit 1
-}
+#[ -z $TRUSTSTORE_PASSWORD ] && {
+  #echo "TRUSTSTORE_PASSWORD is missing" >&2
+  #exit 1
+#}
 
-[ -z $KEYSTORE_PASSWORD ] && {
-  echo "KEYSTORE_PASSWORD is missing" >&2
-  exit 1
-}
+#[ -z $KEYSTORE_PASSWORD ] && {
+  #echo "KEYSTORE_PASSWORD is missing" >&2
+  #exit 1
+#}
 
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
