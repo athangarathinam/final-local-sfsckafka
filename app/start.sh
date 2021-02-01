@@ -11,9 +11,7 @@ SERVER_URL=https://$SERVER_HOST
 #client_cert=os.environ.get('KAFKA_CLIENT_CERT')
 #trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
 
-client_key=$KAFKA_CLIENT_CERT_KEY
-client_cert=$KAFKA_CLIENT_CERT
-trusted_cert=$KAFKA_TRUSTED_CERT
+./certs/setup_certs
 
 echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
@@ -65,36 +63,6 @@ export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-
-####  Keystore and Truststore Generation Start 
-
-#[ -z $TRUSTSTORE_PASSWORD ] && {
-  #echo "TRUSTSTORE_PASSWORD is missing" >&2
-  #exit 1
-#}
-
-#[ -z $KEYSTORE_PASSWORD ] && {
-  #echo "KEYSTORE_PASSWORD is missing" >&2
-  #exit 1
-#}
-
-rm -f .{keystore,truststore}.{pem,pkcs12,jks}
-rm -f .cacerts
-
-echo -n "${!client_key}" >> .keystore.pem
-echo -n "${!client_cert}" >> .keystore.pem
-echo -n "${!trusted_cert}" > .truststore.pem
-
-keytool -importcert -file .truststore.pem -keystore .truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
-
-openssl pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
-keytool -importkeystore -srcstoretype PKCS12 \
-    -destkeystore .keystore.jks -deststorepass $KEYSTORE_PASSWORD \
-    -srckeystore .keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
-
-rm -f .{keystore,truststore}.{pem,pkcs12}
-
-####  Keystore and Truststore Generation End 
 
 echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
