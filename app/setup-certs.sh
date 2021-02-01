@@ -34,6 +34,9 @@ echo -n "${!client_key}" >> .keystore.pem
 echo -n "${!client_cert}" >> .keystore.pem
 echo -n "${!trusted_cert}" > .truststore.pem
 
+echo "keystore - $.keystore.pem"
+echo "trusted - $.truststore.pem"
+
 keytool -importcert -file .truststore.pem -keystore .truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
 openssl pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
