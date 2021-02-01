@@ -37,12 +37,15 @@ export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
 export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
+export CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
 #OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
 
 export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
+export CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
 #CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 
 export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
+export CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
 #STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
 echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
