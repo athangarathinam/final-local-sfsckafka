@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-import os
-
 echo $APP_NAME
 
 echo "======== $APP_NAME ====="
