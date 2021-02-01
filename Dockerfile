@@ -17,7 +17,7 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 COPY .build/certs/*.crt /usr/local/share/ca-certificates/
 COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
 COPY app/start.sh /etc/kafka/start.sh
-COPY certs/setup-certs.sh /etc/kafka/setup-certs.sh
+COPY app/setup-certs.sh /etc/kafka/setup-certs.sh
 
 RUN update-ca-certificates
 
