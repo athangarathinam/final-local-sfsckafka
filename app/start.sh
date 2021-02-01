@@ -11,7 +11,7 @@ SERVER_URL=https://$SERVER_HOST
 #client_cert=os.environ.get('KAFKA_CLIENT_CERT')
 #trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
 
-./certs/setup_certs
+./certs/setup_certs.sh
 
 echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
