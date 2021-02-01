@@ -33,6 +33,7 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
 RUN chmod +x /etc/kafka/start.sh
+RUN chmod +x /etc/kafka/setup-certs.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 CMD ["/etc/kafka/start.sh"]
 
