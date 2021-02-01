@@ -9,9 +9,13 @@ echo "======== $APP_NAME ====="
 SERVER_HOST=$APP_NAME.herokuapp.com
 SERVER_URL=https://$SERVER_HOST
 
-client_key=os.environ.get('KAFKA_CLIENT_CERT_KEY')
-client_cert=os.environ.get('KAFKA_CLIENT_CERT')
-trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
+#client_key=os.environ.get('KAFKA_CLIENT_CERT_KEY')
+#client_cert=os.environ.get('KAFKA_CLIENT_CERT')
+#trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
+
+client_key=$KAFKA_CLIENT_CERT_KEY
+client_cert=$KAFKA_CLIENT_CERT
+trusted_cert=$KAFKA_TRUSTED_CERT
 
 echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
