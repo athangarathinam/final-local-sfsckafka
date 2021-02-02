@@ -30,18 +30,18 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-echo -n "${!client_key}" >> .client_key.pem
-echo -n "${!client_cert}" >> .client_cert.pem
-echo -n "${!trusted_cert}" > .truststore.pem
+echo -n "${!client_key}" >> /etc/kafka/client_key.pem
+echo -n "${!client_cert}" >>  /etc/kafka/client_cert.pem
+echo -n "${!trusted_cert}" >  /etc/kafka/truststore.pem
 
-echo "keystore - $.keystore.pem"
-echo "trusted - $.truststore.pem"
+echo "keystore - $ /etc/kafka/keystore.pem"
+echo "trusted - $ /etc/kafka/truststore.pem"
 
-keytool -importcert -file .truststore.pem -keystore .truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+keytool -importcert -file  /etc/kafka/truststore.pem -keystore  /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
-openssl pkcs12 -export -in .client_cert.pem -inkey .client_key.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+openssl pkcs12 -export -in  /etc/kafka/client_cert.pem -inkey  /etc/kafka/client_key.pem -out  /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 keytool -importkeystore -srcstoretype PKCS12 \
-    -destkeystore .keystore.jks -deststorepass $KEYSTORE_PASSWORD \
-    -srckeystore .keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
+    -destkeystore  /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
+    -srckeystore  /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
 rm -f .{keystore,truststore}.{pem,pkcs12}
