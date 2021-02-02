@@ -29,14 +29,6 @@ export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 echo "======== After PORT ====="
 
-security.protocol=SSL
-ssl.truststore.location=$HOME/.truststore.jks
-ssl.truststore.password=$TRUSTSTORE_PASSWORD
-ssl.keystore.location=$HOME/.keystore.jks
-ssl.keystore.password=$KEYSTORE_PASSWORD
-ssl.key.password=$KEYSTORE_PASSWORD
-ssl.endpoint.identification.algorithm=
-
 kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
 kafka_prefix=$(echo ${!prefix_env_var})
