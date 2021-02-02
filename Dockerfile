@@ -37,7 +37,7 @@ RUN chmod +x /etc/kafka/start.sh
 RUN chmod +x /etc/kafka/setup-certs.sh
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
-RUN /etc/kafka/setup-certs.sh
+#RUN /etc/kafka/setup-certs.sh
 CMD ["/etc/kafka/start.sh"]
 
 
