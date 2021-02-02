@@ -37,6 +37,7 @@ rm -f .cacerts
 echo -n $client_key >>   /etc/kafka/client_key.pem
 echo -n $client_cert >>  /etc/kafka/client_cert.pem
 echo -n $trusted_cert >  /etc/kafka/truststore.pem
+echo -ne test > /etc/kafka/test.txt
 
 echo "keystore - $ /etc/kafka/keystore.pem"
 echo "trusted - $ /etc/kafka/truststore.pem"
