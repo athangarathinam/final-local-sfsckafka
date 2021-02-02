@@ -66,6 +66,14 @@ rm -f .cacerts
 echo -n "$client_key" >>   /etc/kafka/client_key.pem
 echo -n "$client_cert" >>  /etc/kafka/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka/truststore.pem
+
+if [ "$?" = "0" ]; then
+  echo "++++++++++ No Error while creating .pem files +++++++++"
+else
+  echo "++++++++++ Error while creating .pem files +++++++++"
+  exit 1
+fi
+
 echo -ne "test" > /etc/kafka/test.txt
 touch /etc/kafka/test1.txt
 
