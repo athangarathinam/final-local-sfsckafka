@@ -17,8 +17,9 @@ STATE=$STATE
 OU=$ORGANIZATION_UNIT
 CN=`hostname -f`
 LOCATION=$CITY
-TrustStore=$TRUSTSTORE_PASSWORD
-KeyStore=$KEYSTORE_PASSWORD
+#TrustStore=$TRUSTSTORE_PASSWORD
+#KeyStore=$KEYSTORE_PASSWORD
+PASS=$PASSWORD
 
 function file_exists_and_exit() {
   echo "'$1' cannot exist. Move or delete it before"
@@ -54,7 +55,7 @@ trust_store_private_key_file=""
   if [ -e "$TRUSTSTORE_WORKING_DIRECTORY" ]; then
     file_exists_and_exit $TRUSTSTORE_WORKING_DIRECTORY
   fi
- echo pwd
+ 
   mkdir $TRUSTSTORE_WORKING_DIRECTORY
   echo
   echo "OK, we'll generate a trust store and associated private key."
@@ -84,7 +85,7 @@ trust_store_private_key_file=""
 
   keytool -keystore $TRUSTSTORE_WORKING_DIRECTORY/$DEFAULT_TRUSTSTORE_FILENAME \
     -alias CARoot -import -file $TRUSTSTORE_WORKING_DIRECTORY/ca-cert \
-    -noprompt -dname "C=$COUNTRY, ST=$STATE, L=$LOCATION, O=$OU, CN=$CN" -keypass =$TRUSTSTORE_PASSWORD -storepass =$TRUSTSTORE_PASSWORD
+    -noprompt -dname "C=$COUNTRY, ST=$STATE, L=$LOCATION, O=$OU, CN=$CN" -keypass =$PASS -storepass =$PASS
 
   trust_store_file="$TRUSTSTORE_WORKING_DIRECTORY/$DEFAULT_TRUSTSTORE_FILENAME"
 
@@ -115,7 +116,7 @@ echo "           the FQDN. Some operating systems call the CN prompt 'first / la
 
 keytool -keystore $KEYSTORE_WORKING_DIRECTORY/$KEYSTORE_FILENAME \
   -alias localhost -validity $VALIDITY_IN_DAYS -genkey -keyalg RSA \
-   -noprompt -dname "C=$COUNTRY, ST=$STATE, L=$LOCATION, O=$OU, CN=$CN" -keypass $KEYSTORE_PASSWORD -storepass $KEYSTORE_PASSWORD
+   -noprompt -dname "C=$COUNTRY, ST=$STATE, L=$LOCATION, O=$OU, CN=$CN" -keypass $PASS -storepass $PASS
 
 echo
 echo "'$KEYSTORE_WORKING_DIRECTORY/$KEYSTORE_FILENAME' now contains a key pair and a"
@@ -126,13 +127,13 @@ echo
 echo "Fetching the certificate from the trust store and storing in $CA_CERT_FILE."
 echo
 
-keytool -keystore $trust_store_file -export -alias CARoot -rfc -file $CA_CERT_FILE -keypass $TRUSTSTORE_PASSWORD -storepass $TRUSTSTORE_PASSWORD
+keytool -keystore $trust_store_file -export -alias CARoot -rfc -file $CA_CERT_FILE -keypass $PASS -storepass $PASS
 
 echo
 echo "Now a certificate signing request will be made to the keystore."
 echo
 keytool -keystore $KEYSTORE_WORKING_DIRECTORY/$KEYSTORE_FILENAME -alias localhost \
-  -certreq -file $KEYSTORE_SIGN_REQUEST -keypass $KEYSTORE_PASSWORD -storepass $KEYSTORE_PASSWORD
+  -certreq -file $KEYSTORE_SIGN_REQUEST -keypass $PASS -storepass $PASS
 
 echo
 echo "Now the trust store's private key (CA) will sign the keystore's certificate."
@@ -146,14 +147,14 @@ echo
 echo "Now the CA will be imported into the keystore."
 echo
 keytool -keystore $KEYSTORE_WORKING_DIRECTORY/$KEYSTORE_FILENAME -alias CARoot \
-  -import -file $CA_CERT_FILE -keypass $KEYSTORE_PASSWORD -storepass $KEYSTORE_PASSWORD -noprompt
+  -import -file $CA_CERT_FILE -keypass $PASS -storepass $PASS -noprompt
 rm $CA_CERT_FILE # delete the trust store cert because it's stored in the trust store.
 
 echo
 echo "Now the keystore's signed certificate will be imported back into the keystore."
 echo
 keytool -keystore $KEYSTORE_WORKING_DIRECTORY/$KEYSTORE_FILENAME -alias localhost -import \
-  -file $KEYSTORE_SIGNED_CERT -keypass $KEYSTORE_PASSWORD -storepass $KEYSTORE_PASSWORD
+  -file $KEYSTORE_SIGNED_CERT -keypass $PASS -storepass $PASS
 
 echo
 echo "All done!"
