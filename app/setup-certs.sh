@@ -30,16 +30,16 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-#echo -n "${!client_key}" >> .keystore.pem
-#echo -n "${!client_cert}" >> .keystore.pem
-#echo -n "${!trusted_cert}" > .truststore.pem
+echo -n "${!client_key}" >> .keystore.pem
+echo -n "${!client_cert}" >> .keystore.pem
+echo -n "${!trusted_cert}" > .truststore.pem
 
 echo "keystore - $.keystore.pem"
 echo "trusted - $.truststore.pem"
 
 keytool -importcert -file .truststore.pem -keystore .truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
-openssl x509 pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+openssl pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 keytool -importkeystore -srcstoretype PKCS12 \
     -destkeystore .keystore.jks -deststorepass $KEYSTORE_PASSWORD \
     -srckeystore .keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
