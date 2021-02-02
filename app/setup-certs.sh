@@ -40,6 +40,13 @@ echo -n "$trusted_cert" >  /etc/kafka/truststore.pem
 echo -ne "test" > /etc/kafka/test.txt
 touch /etc/kafka/test1.txt
 
+if [ "$?" = "0" ]; then
+  echo "No Error while creating .pem files"
+else
+  echo "Error while creating .pem files"
+  exit 1
+fi
+
 echo "keystore - $ /etc/kafka/keystore.pem"
 echo "trusted - $ /etc/kafka/truststore.pem"
 
