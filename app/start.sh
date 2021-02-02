@@ -88,11 +88,17 @@ keytool -importkeystore -srcstoretype PKCS12 \
 
 #rm -f .{keystore,truststore}.{pem,pkcs12}
 
-kafka_addon_name=${KAFKA_ADDON:-KAFKA}
+#kafka_addon_name=${KAFKA_ADDON:-KAFKA}
+#prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
+#kafka_prefix=$(echo ${!prefix_env_var})
+#kafka_url_env_var="$(echo $kafka_addon_name)_URL"
+#postgres_addon_name=${POSTGRES_ADDON:-DATABASE}
+
+kafka_addon_name=$KAFKA_ADDON:-KAFKA
 prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
-kafka_prefix=$(echo ${!prefix_env_var})
+kafka_prefix=$(echo $prefix_env_var)
 kafka_url_env_var="$(echo $kafka_addon_name)_URL"
-postgres_addon_name=${POSTGRES_ADDON:-DATABASE}
+postgres_addon_name=$POSTGRES_ADDON:-DATABASE
 
 export CONNECT_PRODUCER_SECURITY_PROTOCOL=SSL
 export CONNECT_PRODUCER_SSL_TRUSTSTORE_LOCATION=/etc/kafka/truststore.jks
