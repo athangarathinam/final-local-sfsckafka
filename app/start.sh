@@ -63,26 +63,28 @@ rm -f .cacerts
 #echo -n "${!client_cert}" >>  /etc/kafka/client_cert.pem
 #echo -n "${!trusted_cert}" >  /etc/kafka/truststore.pem
 
-echo -n "$client_key" >  /etc/kafka/keystore.pem
-echo -n "$client_cert" >  /etc/kafka/keystore.pem
+echo -n "$client_key" >>   /etc/kafka/client_key.pem
+echo -n "$client_cert" >>  /etc/kafka/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka/truststore.pem
+echo -ne "test" > /etc/kafka/test.txt
+touch /etc/kafka/test1.txt
 
 if [ "$?" = "0" ]; then
-  echo "++++++++++ No Error while creating .pem files +++++++++"
+  echo "No Error while creating .pem files"
 else
-  echo "++++++++++ Error while creating .pem files +++++++++"
+  echo "Error while creating .pem files"
   exit 1
 fi
 
 echo "keystore - $ /etc/kafka/keystore.pem"
 echo "trusted - $ /etc/kafka/truststore.pem"
 
-keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+keytool -importcert -file  /etc/kafka/truststore.pem -keystore  /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
-openssl pkcs12 -export -in /etc/kafka/keystore.pem -out /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+openssl pkcs12 -export -in  /etc/kafka/client_cert.pem -inkey  /etc/kafka/client_key.pem -out  /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 keytool -importkeystore -srcstoretype PKCS12 \
-    -destkeystore /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
-    -srckeystore /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
+    -destkeystore  /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
+    -srckeystore  /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
 #rm -f .{keystore,truststore}.{pem,pkcs12}
 
