@@ -30,9 +30,9 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-echo -n "${!client_key}" >> .keystore.pem
-echo -n "${!client_cert}" >> .keystore.pem
-echo -n "${!trusted_cert}" > .truststore.pem
+#echo -n "${!client_key}" >> .keystore.pem
+#echo -n "${!client_cert}" >> .keystore.pem
+#echo -n "${!trusted_cert}" > .truststore.pem
 
 echo "keystore - $.keystore.pem"
 echo "trusted - $.truststore.pem"
