@@ -48,4 +48,4 @@ keytool -importkeystore -srcstoretype PKCS12 \
     -destkeystore  /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
     -srckeystore  /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
-rm -f .{keystore,truststore}.{pem,pkcs12}
+#rm -f .{keystore,truststore}.{pem,pkcs12}
