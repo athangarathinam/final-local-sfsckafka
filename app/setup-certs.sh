@@ -39,7 +39,7 @@ echo "trusted - $.truststore.pem"
 
 keytool -importcert -file .truststore.pem -keystore .truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
-openssl pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+openssl -new -x509 pkcs12 -export -in .keystore.pem -out .keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 keytool -importkeystore -srcstoretype PKCS12 \
     -destkeystore .keystore.jks -deststorepass $KEYSTORE_PASSWORD \
     -srckeystore .keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
