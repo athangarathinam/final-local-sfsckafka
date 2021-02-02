@@ -12,8 +12,8 @@ SERVER_URL=https://$SERVER_HOST
 #trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
 
 #source /certs/setup-certs.sh
-#./etc/kafka/setup-certs.sh
-./etc/kafka/kafka-generate-ssl-automatic.sh
+./etc/kafka/setup-certs.sh
+#./etc/kafka/kafka-generate-ssl-automatic.sh
 
 echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
