@@ -30,9 +30,13 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-echo -n "${!client_key}" >> /etc/kafka/client_key.pem
-echo -n "${!client_cert}" >>  /etc/kafka/client_cert.pem
-echo -n "${!trusted_cert}" >  /etc/kafka/truststore.pem
+#echo -n "${!client_key}" >> /etc/kafka/client_key.pem
+#echo -n "${!client_cert}" >>  /etc/kafka/client_cert.pem
+#echo -n "${!trusted_cert}" >  /etc/kafka/truststore.pem
+
+echo -n "${client_key}" >> /etc/kafka/client_key.pem
+echo -n "${client_cert}" >>  /etc/kafka/client_cert.pem
+echo -n "${trusted_cert}" >  /etc/kafka/truststore.pem
 
 echo "keystore - $ /etc/kafka/keystore.pem"
 echo "trusted - $ /etc/kafka/truststore.pem"
