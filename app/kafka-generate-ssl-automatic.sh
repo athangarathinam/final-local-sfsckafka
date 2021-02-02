@@ -54,7 +54,7 @@ trust_store_private_key_file=""
   if [ -e "$TRUSTSTORE_WORKING_DIRECTORY" ]; then
     file_exists_and_exit $TRUSTSTORE_WORKING_DIRECTORY
   fi
-
+ echo pwd
   mkdir $TRUSTSTORE_WORKING_DIRECTORY
   echo
   echo "OK, we'll generate a trust store and associated private key."
