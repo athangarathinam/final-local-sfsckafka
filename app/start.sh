@@ -87,6 +87,14 @@ kafka_prefix=$(echo ${!prefix_env_var})
 kafka_url_env_var="$(echo $kafka_addon_name)_URL"
 postgres_addon_name=${POSTGRES_ADDON:-DATABASE}
 
+export CONNECT_SECURITY_PROTOCOL=SSL
+export CONNECT_SSL_TRUSTSTORE_LOCATION=/ect/kafka/truststore.jks
+export CONNECT_SSL_TRUSTSTORE_PASSWORD=$TRUSTSTORE_PASSWORD
+export CONNECT_SSL_KEYSTORE_LOCATION=/ect/kafka/keystore.jks
+export CONNECT_SSL_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
+export CONNECT_SSL_KEY_PASSWORD=$KEYSTORE_PASSWORD
+export CONNECT_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
+
 echo "Variables: $kafka_addon_name $prefix_env_var $kafka_prefix $kafka_url_env_var $postgres_addon_name "
 
 echo "Secuirty protocal: H-$HOME TP-$TRUSTSTORE_PASSWORD KP-$KEYSTORE_PASSWORD"
