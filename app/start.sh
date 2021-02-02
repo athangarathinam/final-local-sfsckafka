@@ -19,15 +19,15 @@ echo "Client Cert Key: CK-$client_key"
 echo "Client Cert: TP-$client_cert" 
 echo "Trusted Cert: KP-$trusted_cert"
 
-echo "======== Before PORT =====" 
+#echo "======== Before PORT =====" 
 
-export CONNECT_REST_PORT=$PORT
-export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export CONNECT_REST_PORT=$PORT
+#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
 #export REST_PORT=$PORT
 #export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
-echo "======== After PORT ====="
+#echo "======== After PORT ====="
 
 #set -e
 
@@ -136,6 +136,11 @@ echo "======== After postgres_addon_name ====="
 export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
+export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+
 export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
 export CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=3
 #OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
@@ -148,12 +153,20 @@ export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
 export CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=3
 #STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
+export CONNECT_OFFSET_FLUSH_INTERVAL_MS=10000
+
 echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 
-export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
+echo "======== Before PORT =====" 
+
+export CONNECT_REST_PORT=$PORT
+export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+
+#export REST_PORT=$PORT
+#export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+
+echo "======== After PORT ====="
+
 
 echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
