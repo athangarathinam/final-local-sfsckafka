@@ -35,6 +35,7 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 
 RUN chmod +x /etc/kafka/start.sh
 RUN chmod +x /etc/kafka/setup-certs.sh
+RUN chmod +x /etc/kafka/connect-distributed.properties
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 #RUN /etc/kafka/setup-certs.sh
