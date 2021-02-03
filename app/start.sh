@@ -159,9 +159,10 @@ echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 
 echo "======== Before PORT =====" 
 
-export PORT=$PORT:9092
+#export PORT=$PORT:9092
 
-export CONNECT_REST_PORT=$PORT
+#export CONNECT_REST_PORT=$PORT
+export CONNECT_REST_PORT=9092
 export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
 #export REST_PORT=$PORT
