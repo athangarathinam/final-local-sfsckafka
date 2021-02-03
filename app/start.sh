@@ -175,5 +175,13 @@ echo "============Starting Process========= "
 /etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
+echo "Heroku Port - $CONNECT_REST_PORT"
+H-PORT = process.env.PORT
+k-PORT = process.env.PORT + '9092'
+
+echo "H-PORT:- $H-PORT"
+echo "K-PORT:- $K-PORT"
+
+
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
 sleep infinity
