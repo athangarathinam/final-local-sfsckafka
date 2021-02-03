@@ -166,8 +166,6 @@ export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 #export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
 echo "======== After PORT ====="
-
-
 echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
@@ -176,12 +174,6 @@ echo "============Starting Process========= "
 echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
-H-PORT = process.env.PORT
-k-PORT = process.env.PORT + '9092'
-
-echo "H-PORT:- $H-PORT"
-echo "K-PORT:- $K-PORT"
-
 
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
 sleep infinity
