@@ -181,7 +181,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 wget https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar
 cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
---curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
+#curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
 curl -X POST https://SERVER_HOST/connectors -H "Content-Type: application/json" --data @- << EOF
 {
   "name":"KafkaSinkConnectortoSnowflakes",
