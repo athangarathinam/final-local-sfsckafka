@@ -2,7 +2,7 @@
 #FROM confluentinc/cp-kafka-connect-base
 FROM confluentinc/cp-kafka-connect:5.5.3
 
-CONNECT_REST_PORT=$PORT
+RUN CONNECT_REST_PORT=$PORT
 
 
 #ENV GETUPD=y
