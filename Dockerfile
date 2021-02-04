@@ -15,6 +15,7 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 
 #Remove log4j.properties file
 RUN rm /etc/kafka/log4j.properties
+RUN rm /etc/kafka/connect-log4j.properties
 
 # Copy config and certs
 COPY .build/certs/*.crt /usr/local/share/ca-certificates/
@@ -22,6 +23,7 @@ COPY app/connect-distributed.properties /etc/kafka/connect-distributed.propertie
 COPY app/start.sh /etc/kafka/start.sh
 COPY app/setup-certs.sh /etc/kafka/setup-certs.sh
 COPY app/log4j.properties /etc/kafka/log4j.properties
+COPY app/connect-log4j.properties /etc/kafka/connect-log4j.properties
 #COPY app/kafka-generate-ssl-automatic.sh /etc/kafka/kafka-generate-ssl-automatic.sh
 
 RUN update-ca-certificates
@@ -41,6 +43,7 @@ RUN chmod +x /etc/kafka/start.sh
 RUN chmod +x /etc/kafka/setup-certs.sh
 RUN chmod +x /etc/kafka/connect-distributed.properties
 RUN chmod +x /etc/kafka/log4j.properties
+RUN chmod +x /etc/kafka/connect-log4j.properties
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 #RUN /etc/kafka/setup-certs.sh
