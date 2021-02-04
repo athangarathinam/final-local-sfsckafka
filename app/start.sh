@@ -189,7 +189,7 @@ curl -X POST https://SERVER_HOST/connectors -H "Content-Type: application/json" 
     "connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
     "tasks.max":"8",
     "topics":"neat-connector-4307,neat-connector-4307.salesforce.period",
-    "snowflake.topic2table.map": "neat-connector-4307:period,neat-connector-4307.salesforce:period",
+    "snowflake.topic2table.map": "neat-connector-4307:PERIOD,neat-connector-4307.salesforce:PERIOD",
     "buffer.count.records":"10000",
     "buffer.flush.time":"60",
     "buffer.size.bytes":"5000000",
