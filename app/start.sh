@@ -29,10 +29,10 @@ echo "Trusted Cert: KP-$trusted_cert"
 
 #echo "======== After PORT ====="
 
-[ -z $addon ] && {
-  echo "addon is missing" >&2
-  exit 1
-}
+#[ -z $addon ] && {
+ # echo "addon is missing" >&2
+  #exit 1
+#}
 
 client_key="$KAFKA_CLIENT_CERT_KEY"
 client_cert="$KAFKA_CLIENT_CERT"
