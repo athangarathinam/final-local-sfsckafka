@@ -179,5 +179,5 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL
+curl -vvv -X POST http://SERVER_HOST/connectors -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties
 sleep infinity
