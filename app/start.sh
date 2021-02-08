@@ -63,7 +63,7 @@ echo "======== creating pemfile ====="
 
 echo -n "${KAFKA_CLIENT_CERT_KEY}" >> /etc/kafka-connect/keystore.pem
 echo -n "${KAFKA_CLIENT_CERT}" >> /etc/kafka-connect/keystore.pem
-echo -n "${KAFKA_TRUSTED_CERTt}" > /etc/kafka-connect/truststore.pem
+echo -n "${KAFKA_TRUSTED_CERT}" > /etc/kafka-connect/truststore.pem
 
 #keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 keytool -importcert -v -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
