@@ -47,9 +47,15 @@ rm -f .cacerts
 echo -n "$client_key" >>   /etc/kafka-connect/client_key.pem
 echo -n "$client_cert" >>  /etc/kafka-connect/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka-connect/truststore.pem
+
 if [ "$?" = "0" ]; then
   echo "No Error while creating .pem files"
 else
   echo "Error while creating .pem files"
   exit 1
 fi
+
+echo "keystore - $ /etc/kafka-connect/client_key.pem"
+echo "trusted - $ /etc/kafka-connecta/client_cert.pem"
+echo "trusted - $ /etc/kafka-connecta/truststore.pem"
+
