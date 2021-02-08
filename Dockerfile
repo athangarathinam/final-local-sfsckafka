@@ -3,7 +3,7 @@
 FROM confluentinc/cp-kafka-connect:5.5.3
 
 RUN CONNECT_REST_PORT=$PORT
- && CONNECT_PLUGIN_PATH =/etc/kafka-connect
+RUN CONNECT_PLUGIN_PATH =/etc/kafka-connect
 PROPERTIES
 
 #ENV GETUPD=y
