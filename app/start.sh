@@ -52,16 +52,27 @@ trusted_cert="$KAFKA_TRUSTED_CERT"
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-echo -n "${client_key}" >> /etc/kafka/keystore.pem
-echo -n "${client_cert}" >> /etc/kafka/keystore.pem
-echo -n "${trusted_cert}" > /etc/kafka/truststore.pem
+#echo -n "${client_key}" >> /etc/kafka/keystore.pem
+#echo -n "${client_cert}" >> /etc/kafka/keystore.pem
+#echo -n "${trusted_cert}" > /etc/kafka/truststore.pem
 
-keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
+echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
+echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
 
-openssl pkcs12 -export -in /etc/kafka/keystore.pem -out /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+
+#keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+keytool -importcert -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+
+#openssl pkcs12 -export -in /etc/kafka/keystore.pem -out /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
+#keytool -importkeystore -srcstoretype PKCS12 \
+ #   -destkeystore /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
+  #  -srckeystore /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
+    
+openssl pkcs12 -export -in /etc/kafka-connect/keystore.pem -out /etc/kafka-connect/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 keytool -importkeystore -srcstoretype PKCS12 \
-    -destkeystore /etc/kafka/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
-    -srckeystore /etc/kafka/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
+    -destkeystore /etc/kafka-connect/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
+    -srckeystore /etc/kafka-connect/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
 #rm -f .{keystore,truststore}.{pem,pkcs12}
 
@@ -78,25 +89,25 @@ kafka_url_env_var="$(echo $kafka_addon_name)_URL"
 postgres_addon_name=$POSTGRES_ADDON:-DATABASE
 
 export CONNECT_PRODUCER_SECURITY_PROTOCOL=SSL
-export CONNECT_PRODUCER_SSL_TRUSTSTORE_LOCATION=/etc/kafka/truststore.jks
+export CONNECT_PRODUCER_SSL_TRUSTSTORE_LOCATION=/etc/kafka-connect/truststore.jks
 export CONNECT_PRODUCER_SSL_TRUSTSTORE_PASSWORD=$TRUSTSTORE_PASSWORD
-export CONNECT_PRODUCER_SSL_KEYSTORE_LOCATION=/etc/kafka/keystore.jks
+export CONNECT_PRODUCER_SSL_KEYSTORE_LOCATION=/etc/kafka-connect/keystore.jks
 export CONNECT_PRODUCER_SSL_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_PRODUCER_SSL_KEY_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_PRODUCER_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
 
 export CONNECT_CONSUMER_SECURITY_PROTOCOL=SSL
-export CONNECT_CONSUMER_SSL_TRUSTSTORE_LOCATION=/etc/kafka/truststore.jks
+export CONNECT_CONSUMER_SSL_TRUSTSTORE_LOCATION=/etc/kafka-connect/truststore.jks
 export CONNECT_CONSUMER_SSL_TRUSTSTORE_PASSWORD=$TRUSTSTORE_PASSWORD
-export CONNECT_CONSUMER_SSL_KEYSTORE_LOCATION=/etc/kafka/keystore.jks
+export CONNECT_CONSUMER_SSL_KEYSTORE_LOCATION=/etc/kafka-connect/keystore.jks
 export CONNECT_CONSUMER_SSL_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_CONSUMER_SSL_KEY_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_CONSUMER_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
 
 export CONNECT_SECURITY_PROTOCOL=SSL
-export CONNECT_SSL_TRUSTSTORE_LOCATION=/etc/kafka/truststore.jks
+export CONNECT_SSL_TRUSTSTORE_LOCATION=/etc/kafka-connect/truststore.jks
 export CONNECT_SSL_TRUSTSTORE_PASSWORD=$TRUSTSTORE_PASSWORD
-export CONNECT_SSL_KEYSTORE_LOCATION=/etc/kafka/keystore.jks
+export CONNECT_SSL_KEYSTORE_LOCATION=/etc/kafka-connect/keystore.jks
 export CONNECT_SSL_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_SSL_KEY_PASSWORD=$KEYSTORE_PASSWORD
 export CONNECT_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
@@ -138,9 +149,9 @@ echo "======== Before PORT ====="
 
 #export PORT=$PORT:9092
 
-#export CONNECT_REST_PORT=$PORT
+export CONNECT_REST_PORT=$PORT
 #export CONNECT_REST_PORT=9092
-export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
 
 #export REST_PORT=$PORT
 #export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
@@ -158,5 +169,5 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #wget https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
+curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
 sleep infinity
