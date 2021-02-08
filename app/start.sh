@@ -56,10 +56,10 @@ rm -f .cacerts
 #echo -n "${client_cert}" >> /etc/kafka/keystore.pem
 #echo -n "${trusted_cert}" > /etc/kafka/truststore.pem
 
+echo "======== creating pemfile ====="
 echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
 echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
 echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
-
 
 #keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 keytool -importcert -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
