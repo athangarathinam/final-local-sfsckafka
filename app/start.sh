@@ -157,5 +157,27 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #wget https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
-sleep infinity
+#curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
+#sleep infinity
+
+curl -X POST https://SERVER_HOST/connectors -H "Content-Type: application/json" --data @-
+{
+  "name":"KafkaSinkConnectortoSnowflakes",
+  "config":{
+    "connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
+    "tasks.max":"8",
+    "topics":"neat-connector-4307,neat-connector-4307.salesforce.period",
+    "snowflake.topic2table.map": "neat-connector-4307:period,neat-connector-4307.salesforce:period",
+    "buffer.count.records":"10000",
+    "buffer.flush.time":"60",
+    "buffer.size.bytes":"5000000",
+    "snowflake.url.name":"wda05749.snowflakecomputing.com:443",
+    "snowflake.user.name":"MMUSAPETA",
+    "snowflake.private.key":"MIIFLTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIIJRKoaZhtIICAggAMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBDA1TySLeWMwLitXy2gsVkNBIIE0KHPYkRMRy96cn3zi6skIjQtaM1cmxYvSa6AqdkNZRWpFgMrcapcIKakQXZi+nX1WQGhLIqc86/DaRJjh8MtWxJGK68roTzOfpI214ewO7h8lG+Vx1ge1Cyednt6yKkcCtgoti7lUCiNpm9SpaXe1bQpWDSyk9htyi1pwXBKojLZqEFC39GNMON3Gv7+hoBccbEdngdc37ovr+Sdn6ST5pDXX5B5qQh2nJj+YwH2RZmQIQxJCg4jHXQqx2nUCtB6mydQ6YD52TkZoBwROyVo51rL1wfSueg6Xt0v+Z6e7IpeID3pOiFHRIDcGp7GVXW+KGwPgUe02X2ELQy0ACiY4bkRsC/2yORGjzYsI1C7w/RfDP0QfndxEJ2uU5BzPBGSx2qpaXwLM+nsQVxRoGvhDKjEjb425ldf6ZhHq2U0xgccZHQn0KKmsxmM0RqskxDdF47QnFgC8B8XJUMKcbcWO0sO2rl+m2pfm6iJlw6t6D5pmjxn53VX2zid4VsyOgITXuNg2Ui8WCDZw/sqhTVKMQ1GEx2J8oOE0+5h7VwjiTFvEgyZq0facXLFLOsj6xRH4VechHDQbw3QUkac17bGSXzpHzJD7IadnfVOMqdLfCEq668OVKnuV4iKeeZvqTxzNBNzMQUWYi01e/9gfEylgsIsQPt+Tl2ahDpucoUVAbGiMGzY5OCNUtpuZDTPIZTQaoI650Dn2yRIPvbxtC+ET3/MbwqHyzn1LJQ8zFsUovIR8/lY9WJ99ok/IgbH/XcFhrgXAhtzuKk0pTioviKCn0BjmB+kyc/YNmRMdo/JeYY0o+7wtuYtsnqng2VyMytLFk5qF0L3wuusyTY+UoHDwuhH9QsH0f26p5wVc4/YckltU714t6lAwske+F35x1/PA8D8W5JlLkLZVFOlg4Q8V0wAyeTc0HnLEDCJDRSzu/LqNz/UPwJOSf0zUUEUYtGMC4MHHVAni5E22ciyXUzXS0dy3ZCqLafdxYLk6TusuRoT2/BF34wszFE2ix0c61noYi9FjCAkYTTk4nRSxs5IIUb8ULfrdL7vFFjrfA/B8sFcUG95ZLcpNbWy+xElnQDiroxTnI8PxQXB6sY/XrGbwkVKMeapzvhQ6cc4ZPhAidUxT2UJYzE/N5CWgGtqvhBicZA97B45FaeMqbjWGHjtRAeotSc7DQh4Cwu7xXMZOJ6kxtgUd9QN64C39DMaoKOfOrgoXVz904A6r1mjVrTWR8XSUG5pE/34LgOkG30gf+VjXiRt/wZl/N4XmgnLjHTQrvaKVzLiHMKLXRzml/1tJy5bk0WbNVVBdk4YTdnjOd5/VDVEWmdM2DSzi4kolZgyv7B7htJeYgXHEyO7TmJRr97vsVK8OCcFSDLhERMfly1tet5zxpwD6PW7qoO3pnQtmcj/6rAbXwW75WwXQ0q4c8QaAYO2GJg7PJ95AuXRti0QrGXWSj5R118Eex+GSepcD37uQz+XG7d7x1MU4LBPvr4CtB3MsR4R1If+c9zmnxw+rlr4fCW1za7bkoLdl48i0u1mJbf4RdsmBdDDzzFfdXJmk5I7Cb2N+NUs7c6SQLW4nvr6MnKxDwa1UFJBzLta/vmkz/CW7uj0XsOBEQe7kaLigOXDt5VQ9SHmByHuXhHO",
+    "snowflake.private.key.passphrase":"SKgN3+WK?"y+SaG%",
+    "snowflake.database.name":"SF_KAFKA_SF",
+    "snowflake.schema.name":"SF_KAFKA",
+    "key.converter":"org.apache.kafka.connect.storage.StringConverter",
+    "value.converter:"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
+      }
+   }
