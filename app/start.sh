@@ -62,7 +62,7 @@ echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
 echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
 
 #keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
-keytool -importcert -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+keytool -importcert -v -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
 #openssl pkcs12 -export -in /etc/kafka/keystore.pem -out /etc/kafka/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
 #keytool -importkeystore -srcstoretype PKCS12 \
