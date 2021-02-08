@@ -16,10 +16,6 @@ SERVER_URL=http://$SERVER_HOST
 #/etc/kafka/setup-certs.sh
 #./etc/kafka/kafka-generate-ssl-automatic.sh
 
-echo "Client Cert Key: CK-$client_key"
-echo "Client Cert: TP-$client_cert" 
-echo "Trusted Cert: KP-$trusted_cert"
-
 #echo "======== Before PORT =====" 
 
 #export CONNECT_REST_PORT=$PORT
@@ -57,13 +53,9 @@ rm -f .cacerts
 #echo -n "${trusted_cert}" > /etc/kafka/truststore.pem
 
 echo "======== creating pemfile ====="
-#echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
-#echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
-#echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
-
-echo -n "${KAFKA_CLIENT_CERT_KEY}" >> /etc/kafka-connect/keystore.pem
-echo -n "${KAFKA_CLIENT_CERT}" >> /etc/kafka-connect/keystore.pem
-echo -n "${KAFKA_TRUSTED_CERT}" > /etc/kafka-connect/truststore.pem
+echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
+echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
+echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
 
 #keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 keytool -importcert -v -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
@@ -79,6 +71,10 @@ keytool -importkeystore -srcstoretype PKCS12 \
     -srckeystore /etc/kafka-connect/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
 #rm -f .{keystore,truststore}.{pem,pkcs12}
+
+echo "Client Cert Key: CK-$client_key"
+echo "Client Cert: TP-$client_cert" 
+echo "Trusted Cert: KP-$trusted_cert"
 
 #kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 #prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
