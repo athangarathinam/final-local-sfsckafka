@@ -44,6 +44,10 @@ COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 COPY app/log4j.properties /etc/kafka-connect/log4j.properties
 COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
 
+#Config Log4j at Launching Place
+RUN chmod +x /etc/kafka-connect/log4j.properties
+RUN chmod +x /etc/kafka-connect/connect-log4j.properties
+
 RUN update-ca-certificates
 
 # Confluent Hub Config and Installs
@@ -62,8 +66,6 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 RUN chmod +x /etc/kafka-connect/start.sh
 RUN chmod +x /etc/kafka-connect/setup-certs.sh
 RUN chmod +x /etc/kafka-connect/connect-distributed.properties
-RUN chmod +x /etc/kafka-connect/log4j.properties
-RUN chmod +x /etc/kafka-connect/connect-log4j.properties
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
