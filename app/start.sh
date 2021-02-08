@@ -35,9 +35,9 @@ echo "Trusted Cert: KP-$trusted_cert"
   #exit 1
 #}
 
-client_key="$KAFKA_CLIENT_CERT_KEY"
-client_cert="$KAFKA_CLIENT_CERT"
-trusted_cert="$KAFKA_TRUSTED_CERT"
+#client_key="$KAFKA_CLIENT_CERT_KEY"
+#client_cert="$KAFKA_CLIENT_CERT"
+#trusted_cert="$KAFKA_TRUSTED_CERT"
 
 [ -z $TRUSTSTORE_PASSWORD ] && {
   echo "TRUSTSTORE_PASSWORD is missing" >&2
@@ -57,9 +57,13 @@ rm -f .cacerts
 #echo -n "${trusted_cert}" > /etc/kafka/truststore.pem
 
 echo "======== creating pemfile ====="
-echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
-echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
-echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
+#echo -n "${client_key}" >> /etc/kafka-connect/keystore.pem
+#echo -n "${client_cert}" >> /etc/kafka-connect/keystore.pem
+#echo -n "${trusted_cert}" > /etc/kafka-connect/truststore.pem
+
+echo -n "${KAFKA_CLIENT_CERT_KEY}" >> /etc/kafka-connect/keystore.pem
+echo -n "${KAFKA_CLIENT_CERT}" >> /etc/kafka-connect/keystore.pem
+echo -n "${KAFKA_TRUSTED_CERTt}" > /etc/kafka-connect/truststore.pem
 
 #keytool -importcert -file /etc/kafka/truststore.pem -keystore /etc/kafka/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 keytool -importcert -v -file /etc/kafka-connect/truststore.pem -keystore /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
