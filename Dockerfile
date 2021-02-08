@@ -40,13 +40,14 @@ RUN mkdir -p /etc/kafka-connect/kafka-logs
 COPY .build/certs/*.crt /usr/local/share/ca-certificates/
 COPY app/connect-distributed.properties /etc/kafka-connect/connect-distributed.properties
 COPY app/start.sh /etc/kafka-connect/start.sh
+COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 COPY app/log4j.properties /etc/kafka-connect/log4j.properties
 COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
 
 #Config Log4j at Launching Place
-RUN chmod +x /etc/kafka-connect/log4j.properties
-RUN chmod +x /etc/kafka-connect/connect-log4j.properties
+#RUN chmod +x /etc/kafka-connect/log4j.properties
+#RUN chmod +x /etc/kafka-connect/connect-log4j.properties
 
 RUN update-ca-certificates
 
@@ -64,7 +65,8 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5
 #RUN chmod +x /etc/kafka/connect-log4j.properties
 
 RUN chmod +x /etc/kafka-connect/start.sh
-RUN chmod +x /etc/kafka-connect/setup-certs.sh
+RUN chmod +x /etc/kafka-connect/start_test.sh
+RUN chmod +x /etc/kafka-connect/setup-certs.shst
 RUN chmod +x /etc/kafka-connect/connect-distributed.properties
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
@@ -72,7 +74,7 @@ RUN chmod +x /etc/kafka-connect/connect-distributed.properties
 #RUN /etc/kafka/setup-certs.sh
 #CMD ["/etc/kafka/start.sh"]
 
-CMD ["/etc/kafka-connect/start.sh"]
+CMD ["/etc/kafka-connect/start_test.sh"]
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
 
