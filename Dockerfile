@@ -8,19 +8,19 @@ RUN CONNECT_REST_PORT=$PORT
 
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
-RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
-    && apt-get update \
-    && apt-get install unzip \
-    && apt-get install zip \
-    && apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
-    vim
+#RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
+ #   && apt-get update \
+  #  && apt-get install unzip \
+   # && apt-get install zip \
+    #&& apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
+    #vim
 
 #Remove log4j.properties file
 #RUN rm /etc/kafka/log4j.properties
 #RUN rm /etc/kafka/connect-log4j.properties
 
-RUN rm /etc/kafka-connect/log4j.properties
-RUN rm /etc/kafka-connect/connect-log4j.properties
+#RUN rm /etc/kafka-connect/log4j.properties
+#RUN rm /etc/kafka-connect/connect-log4j.properties
 
 # Copy config and certs
 #COPY .build/certs/*.crt /usr/local/share/ca-certificates/
