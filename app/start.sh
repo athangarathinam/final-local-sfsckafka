@@ -160,7 +160,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties $SERVER_URL/connectors
 #sleep infinity
 
-curl -X POST https://SERVER_HOST/connectors -H "Content-Type: application/json" --data @-
+RUN curl -X POST http://SERVER_HOST/connectors -H "Content-Type: application/json" --data @-
 {
   "name":"KafkaSinkConnectortoSnowflakes",
   "config":{
