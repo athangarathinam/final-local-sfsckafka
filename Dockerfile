@@ -4,6 +4,12 @@ FROM confluentinc/cp-kafka-connect:5.5.3
 
 RUN CONNECT_REST_PORT=$PORT
 
+# Create plugin directory
+RUN mkdir -p /usr/share/java/plugins
+RUN mkdir -p /usr/share/java/kafka-connect-jdbc
+#RUN mkdir -p /etc/kafka/kafka-logs
+RUN mkdir -p /etc/kafka-connect/kafka-logs
+
 #ENV GETUPD=y
 
 #install vim and update 
@@ -39,12 +45,6 @@ COPY app/log4j.properties /etc/kafka-connect/log4j.properties
 COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
 
 RUN update-ca-certificates
-
-# Create plugin directory
-RUN mkdir -p /usr/share/java/plugins
-RUN mkdir -p /usr/share/java/kafka-connect-jdbc
-#RUN mkdir -p /etc/kafka/kafka-logs
-RUN mkdir -p /etc/kafka-connect/kafka-logs
 
 # Confluent Hub Config and Installs
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
