@@ -69,6 +69,7 @@ RUN chmod +x /etc/kafka-connect/start.sh
 RUN chmod +x /etc/kafka-connect/start_test.sh
 RUN chmod +x /etc/kafka-connect/setup-certs.sh
 RUN chmod +x /etc/kafka-connect/connect-distributed.properties
+RUN sudo rm ~/.rnd
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
