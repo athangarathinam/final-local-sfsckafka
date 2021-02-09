@@ -8,6 +8,9 @@ SERVER_HOST="$(echo $APP_NAME).herokuapp.com"
 SERVER_URL=http://$SERVER_HOST
 export CONNECT_REST_ADVERTISED_HOST_NAME=$(echo $APP_NAME).herokuapp.com
 
+export RANDFILE=/etc/kafka-connect/.rnd
+#set RANDFILE=.rnd
+
 #client_key=os.environ.get('KAFKA_CLIENT_CERT_KEY')
 #client_cert=os.environ.get('KAFKA_CLIENT_CERT')
 #trusted_cert=os.environ.get('KAFKA_TRUSTED_CERT')
@@ -35,8 +38,6 @@ export CONNECT_REST_ADVERTISED_HOST_NAME=$(echo $APP_NAME).herokuapp.com
 #client_cert="$(echo $addon)_CLIENT_CERT"
 #trusted_cert="$(echo $addon)_TRUSTED_CERT"
 
-set RANDFILE=.rnd
-
 client_key=$KAFKA_CLIENT_CERT_KEY
 client_cert=$KAFKA_CLIENT_CERT
 trusted_cert=$KAFKA_TRUSTED_CERT
@@ -53,8 +54,6 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
-
-RUN echo -n " " >  /etc/kafka-connect/test3.txt
 
 #echo -n "${!client_key}" >> /etc/kafka-connect/client_key.pem
 #echo -n "${!client_cert}" >>  /etc/kafka-connect/client_cert.pem
