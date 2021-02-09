@@ -58,3 +58,5 @@ fi
 echo "keystore - $ /etc/kafka-connect/client_key.pem"
 echo "trusted - $ /etc/kafka-connecta/client_cert.pem"
 echo "trusted - $ /etc/kafka-connecta/truststore.pem"
+
+keytool -importcert -file  /etc/kafka-connect/truststore.pem -keystore  /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
