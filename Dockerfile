@@ -59,6 +59,7 @@ RUN update-ca-certificates
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect"
 
 echo -n > /etc/kafka-connect/test3.txt
+echo -n testing > /tmp/test.txt
 
 #RUN chmod +x /etc/kafka/start.sh
 #RUN chmod +x /etc/kafka/setup-certs.sh
