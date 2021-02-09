@@ -52,7 +52,7 @@ trusted_cert=$KAFKA_TRUSTED_CERT
 rm -f .{keystore,truststore}.{pem,pkcs12,jks}
 rm -f .cacerts
 
-touch >  /etc/kafka-connect/test.txt
+echo >  /etc/kafka-connect/test.txt
 
 #echo -n "${!client_key}" >> /etc/kafka-connect/client_key.pem
 #echo -n "${!client_cert}" >>  /etc/kafka-connect/client_cert.pem
