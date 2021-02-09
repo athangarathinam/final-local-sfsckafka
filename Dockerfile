@@ -7,6 +7,8 @@ RUN CONNECT_REST_PORT=$PORT
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
+RUN chmod +x rm ~/.rnd
+
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
 RUN mkdir -p /usr/share/java/kafka-connect-jdbc
@@ -69,7 +71,7 @@ RUN chmod +x /etc/kafka-connect/start.sh
 RUN chmod +x /etc/kafka-connect/start_test.sh
 RUN chmod +x /etc/kafka-connect/setup-certs.sh
 RUN chmod +x /etc/kafka-connect/connect-distributed.properties
-RUN chmod +x rm ~/.rnd
+
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
