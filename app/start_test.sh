@@ -66,6 +66,10 @@ openssl pkcs12 -export -in  /etc/kafka-connect/client_cert.pem -inkey  /etc/kafk
 keytool -importkeystore -srcstoretype PKCS12 \
     -destkeystore  /etc/kafka-connect/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
     -srckeystore  /etc/kafka-connect/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
+    
+echo "Client Cert Key: CK-$client_key"
+echo "Client Cert: TP-$client_cert" 
+echo "Trusted Cert: KP-$trusted_cert"    
 
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://SERVER_HOST
 sleep infinity
