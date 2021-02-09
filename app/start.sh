@@ -35,6 +35,8 @@ export CONNECT_REST_ADVERTISED_HOST_NAME=$(echo $APP_NAME).herokuapp.com
 #client_cert="$(echo $addon)_CLIENT_CERT"
 #trusted_cert="$(echo $addon)_TRUSTED_CERT"
 
+set RANDFILE=.rnd
+
 client_key=$KAFKA_CLIENT_CERT_KEY
 client_cert=$KAFKA_CLIENT_CERT
 trusted_cert=$KAFKA_TRUSTED_CERT
