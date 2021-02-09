@@ -13,9 +13,9 @@ RUN mkdir -p /usr/share/java/kafka-connect-jdbc
 #RUN mkdir -p /etc/kafka/kafka-logs
 RUN mkdir -p /etc/kafka-connect/kafka-logs
 
-RUN echo -n >    /etc/kafka-connect/client_key.pem
-RUN echo -n >  /etc/kafka-connect/client_cert.pem
-RUN echo -n >  /etc/kafka-connect/truststore.pem
+#RUN echo -n >    /etc/kafka-connect/client_key.pem
+#RUN echo -n >  /etc/kafka-connect/client_cert.pem
+#RUN echo -n >  /etc/kafka-connect/truststore.pem
 
 #ENV GETUPD=y
 
@@ -28,66 +28,7 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
    && apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
    vim
    
-   #[ -z $addon ] && {
- # echo "addon is missing" >&2
-  #exit 1
-#}
-
-#client_key="$(echo $addon)_CLIENT_CERT_KEY"
-#client_cert="$(echo $addon)_CLIENT_CERT"
-#trusted_cert="$(echo $addon)_TRUSTED_CERT"
-
-client_key=$KAFKA_CLIENT_CERT_KEY
-client_cert=$KAFKA_CLIENT_CERT
-trusted_cert=$KAFKA_TRUSTED_CERT
-
-[ -z $TRUSTSTORE_PASSWORD ] && {
-  echo "TRUSTSTORE_PASSWORD is missing" >&2
-  exit 1
-}
-
-[ -z $KEYSTORE_PASSWORD ] && {
-  echo "KEYSTORE_PASSWORD is missing" >&2
-  exit 1
-}
-
-rm -f .{keystore,truststore}.{pem,pkcs12,jks}
-rm -f .cacerts
-
-#echo -n "${!client_key}" >> /etc/kafka-connect/client_key.pem
-#echo -n "${!client_cert}" >>  /etc/kafka-connect/client_cert.pem
-#echo -n "${!trusted_cert}" >  /etc/kafka-connect/truststore.pem
-
-echo -n "$client_key" >   /etc/kafka-connect/client_key.pem
-echo -n "$client_cert" >  /etc/kafka-connect/client_cert.pem
-echo -n "$trusted_cert" >  /etc/kafka-connect/truststore.pem
-
-
-
-if [ "$?" = "0" ]; then
-  echo "No Error while creating .pem files"
-else
-  echo "Error while creating .pem files"
-  exit 1
-fi
-
-echo "keystore - $ /etc/kafka-connect/client_key.pem"
-echo "trusted - $ /etc/kafka-connecta/client_cert.pem"
-echo "trusted - $ /etc/kafka-connecta/truststore.pem"
-
-keytool -importcert -file  /etc/kafka-connect/truststore.pem -keystore  /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
-
-openssl pkcs12 -export -in  /etc/kafka-connect/client_cert.pem -inkey  /etc/kafka-connect/client_key.pem -out  /etc/kafka-connect/keystore.pkcs12 -password pass:$KEYSTORE_PASSWORD
-keytool -importkeystore -srcstoretype PKCS12 \
-    -destkeystore  /etc/kafka-connect/keystore.jks -deststorepass $KEYSTORE_PASSWORD \
-    -srckeystore  /etc/kafka-connect/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
-
-#rm -f .{keystore,truststore}.{pem,pkcs12}
-
-echo "Client Cert Key: CK-$client_key"
-echo "Client Cert: TP-$client_cert" 
-echo "Trusted Cert: KP-$trusted_cert"
-
+  
 #Remove log4j.properties file
 #RUN rm /etc/kafka/log4j.properties
 #RUN rm /etc/kafka/connect-log4j.properties
