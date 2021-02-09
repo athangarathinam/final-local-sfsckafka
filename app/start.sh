@@ -59,8 +59,8 @@ rm -f .cacerts
 #echo -n "${!client_cert}" >>  /etc/kafka-connect/client_cert.pem
 #echo -n "${!trusted_cert}" >  /etc/kafka-connect/truststore.pem
 
-echo -n "$client_key" >>   /etc/kafka-connect/client_key.pem
-echo -n "$client_cert" >>  /etc/kafka-connect/client_cert.pem
+echo -n "$client_key" >   /etc/kafka-connect/client_key.pem
+echo -n "$client_cert" >  /etc/kafka-connect/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka-connect/truststore.pem
 
 
