@@ -73,8 +73,9 @@ RUN chmod +x /etc/kafka-connect/connect-distributed.properties
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 #RUN /etc/kafka/setup-certs.sh
 #CMD ["/etc/kafka/start.sh"]
+CMD ["/etc/kafka-connect/start.sh"]
 
-CMD ["/etc/kafka-connect/start_test.sh"]
+#CMD ["/etc/kafka-connect/start_test.sh"]
 
 #CMD curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com:443/connectors ; 'bash'
 
