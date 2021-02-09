@@ -4,6 +4,9 @@ FROM confluentinc/cp-kafka-connect:5.5.3
 
 RUN CONNECT_REST_PORT=$PORT
 
+RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
+ && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
+
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
 RUN mkdir -p /usr/share/java/kafka-connect-jdbc
@@ -55,8 +58,6 @@ RUN update-ca-certificates
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect"
 
-RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
- && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
 #RUN chmod +x /etc/kafka/start.sh
 #RUN chmod +x /etc/kafka/setup-certs.sh
