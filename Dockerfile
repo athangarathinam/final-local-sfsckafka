@@ -7,8 +7,6 @@ RUN CONNECT_REST_PORT=$PORT
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
 
-RUN chmod +x rm ~/.rnd
-
 # Create plugin directory
 RUN mkdir -p /usr/share/java/plugins
 RUN mkdir -p /usr/share/java/kafka-connect-jdbc
