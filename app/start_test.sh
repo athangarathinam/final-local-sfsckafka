@@ -60,4 +60,6 @@ echo "trusted - $ /etc/kafka-connecta/client_cert.pem"
 echo "trusted - $ /etc/kafka-connecta/truststore.pem"
 
 keytool -importcert -file  /etc/kafka-connect/truststore.pem -keystore  /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
+
+curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://SERVER_HOST
 sleep infinity
