@@ -3,7 +3,7 @@
 echo $APP_NAME
 
 echo "======== $APP_NAME ====="
-SERVER_HOST="$(APP_NAME).herokuapp.com
+SERVER_HOST="$(APP_NAME).herokuapp.com"
 #SERVER_URL=https://$SERVER_HOST
 SERVER_URL=http://$SERVER_HOST
 
