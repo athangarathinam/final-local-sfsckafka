@@ -17,12 +17,12 @@ RUN mkdir -p /etc/kafka-connect/kafka-logs
 
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
-#RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
- #   && apt-get update \
-  #  && apt-get install unzip \
-   # && apt-get install zip \
-    #&& apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
-    #vim
+RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
+   && apt-get update \
+   && apt-get install unzip \
+   && apt-get install zip \
+   && apt-get --yes --force-yes install -y --no-install-recommends apt-utils \
+   vim
 
 #Remove log4j.properties file
 #RUN rm /etc/kafka/log4j.properties
