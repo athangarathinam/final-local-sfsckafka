@@ -138,7 +138,7 @@ echo "Variables: $kafka_addon_name $prefix_env_var $kafka_prefix $kafka_url_env_
 
 echo "Secuirty protocal: H-$HOME TP-$TRUSTSTORE_PASSWORD KP-$KEYSTORE_PASSWORD"
 
-echo "======== After postgres_addon_name ====="
+echo "======== After postgres_addon_name ========"
 
 #export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 #BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
