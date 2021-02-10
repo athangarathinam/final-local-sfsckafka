@@ -78,7 +78,8 @@ RUN chmod +x /etc/kafka-connect/connect-distributed.properties
 #ENTRYPOINT ["source", "/etc/kafka/start.sh"]
 #RUN /etc/kafka/setup-certs.sh
 #CMD ["/etc/kafka/start.sh"]
-CMD ["/etc/kafka-connect/start.sh"]
+#CMD ["/etc/kafka-connect/start.sh"]
+CMD bash ["/etc/kafka-connect/start.sh"]
 
 #CMD ["/etc/kafka-connect/start_test.sh"]
 
