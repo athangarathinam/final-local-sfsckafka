@@ -19,13 +19,13 @@ export RANDFILE=/etc/kafka-connect/.rnd
 #/etc/kafka/setup-certs.sh
 #./etc/kafka/kafka-generate-ssl-automatic.sh
 
-#echo "======== Before PORT =====" 
+#echo "======== Before PORT ====="
 
 #export CONNECT_REST_PORT=$PORT
-#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 #export REST_PORT=$PORT
-#export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 #echo "======== After PORT ====="
 
@@ -95,7 +95,7 @@ keytool -importkeystore -srcstoretype PKCS12 \
 #rm -f .{keystore,truststore}.{pem,pkcs12}
 
 echo "Client Cert Key: CK-$client_key"
-echo "Client Cert: TP-$client_cert" 
+echo "Client Cert: TP-$client_cert"
 echo "Trusted Cert: KP-$trusted_cert"
 
 #kafka_addon_name=${KAFKA_ADDON:-KAFKA}
@@ -167,23 +167,23 @@ export CONNECT_OFFSET_FLUSH_INTERVAL_MS=10000
 
 echo "======== After CONNECT_STATUS_STORAGE_TOPIC ====="
 
-echo "======== Before PORT =====" 
+echo "======== Before PORT ====="
 
 #export PORT=$PORT:9092
 
 export CONNECT_REST_PORT=$PORT
 #export CONNECT_REST_PORT=9092
-#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export CONNECT_REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 #export REST_PORT=$PORT
-#export REST_ADVERTISED_HOST_NAME="$SERVER_HOST" 
+#export REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 echo "======== After PORT ====="
 echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
-/etc/confluent/docker/run &
+# /etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
@@ -192,6 +192,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://sfsc-kafka-c1-test.herokuapp.com
+# curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://sfsc-kafka-c1-test.herokuapp.com/connectors
-sleep infinity
+# sleep infinity
+KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
