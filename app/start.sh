@@ -63,16 +63,16 @@ echo -n "$client_key" >   /etc/kafka-connect/client_key.pem
 echo -n "$client_cert" >  /etc/kafka-connect/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka-connect/truststore.pem
 
-echo "Cat client_key.pem"
-echo ""
-cat /etc/kafka-connect/client_key.pem
-echo "Cat client_cert.pem"
-echo ""
-cat /etc/kafka-connect/client_cert.pem
-echo "Cat truststore.pem"
-echo ""
-cat /etc/kafka-connect/truststore.pem
-echo ""
+#echo "Cat client_key.pem"
+#echo ""
+#cat /etc/kafka-connect/client_key.pem
+#echo "Cat client_cert.pem"
+#echo ""
+#cat /etc/kafka-connect/client_cert.pem
+#echo "Cat truststore.pem"
+#echo ""
+#cat /etc/kafka-connect/truststore.pem
+#echo ""
 
 if [ "$?" = "0" ]; then
   echo "No Error while creating .pem files"
@@ -81,9 +81,9 @@ else
   exit 1
 fi
 
-echo "keystore - $ /etc/kafka-connect/client_key.pem"
-echo "trusted - $ /etc/kafka-connect/client_cert.pem"
-echo "trusted - $ /etc/kafka-connect/truststore.pem"
+#echo "keystore - $ /etc/kafka-connect/client_key.pem"
+#echo "trusted - $ /etc/kafka-connect/client_cert.pem"
+#echo "trusted - $ /etc/kafka-connect/truststore.pem"
 
 keytool -importcert -file  /etc/kafka-connect/truststore.pem -keystore  /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
@@ -93,10 +93,6 @@ keytool -importkeystore -srcstoretype PKCS12 \
     -srckeystore  /etc/kafka-connect/keystore.pkcs12 -srcstorepass $KEYSTORE_PASSWORD
 
 #rm -f .{keystore,truststore}.{pem,pkcs12}
-
-echo "Client Cert Key: CK-$client_key"
-echo "Client Cert: TP-$client_cert"
-echo "Trusted Cert: KP-$trusted_cert"
 
 #kafka_addon_name=${KAFKA_ADDON:-KAFKA}
 #prefix_env_var="$(echo $kafka_addon_name)_PREFIX"
