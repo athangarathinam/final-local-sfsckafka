@@ -155,15 +155,19 @@ export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 
-export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
+#export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
+export CONNECT_OFFSET_STORAGE_TOPIC="sf_kafka_sf_offset"
+
 export CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=3
 #OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
 
-export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
+#export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
+export CONNECT_CONFIG_STORAGE_TOPIC="sf_kafka_sf_config"
 export CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=3
 #CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 
-export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
+#export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
+export CONNECT_STATUS_STORAGE_TOPIC="sf_kafka_sf_status"
 export CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=3
 #STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
@@ -183,7 +187,7 @@ export CONNECT_REST_PORT=$PORT
 #export REST_ADVERTISED_HOST_NAME="$SERVER_HOST"
 
 echo "======== After PORT ====="
-echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS "
+echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS"
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
