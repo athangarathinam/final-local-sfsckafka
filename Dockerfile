@@ -39,8 +39,8 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 #COPY app/connect-distributed.properties /etc/kafka/connect-distributed.properties
 #COPY app/start.sh /etc/kafka/start.sh
 #COPY app/setup-certs.sh /etc/kafka/setup-certs.sh
-#COPY app/log4j.properties /etc/kafka/log4j.properties
-#COPY app/connect-log4j.properties /etc/kafka/connect-log4j.properties
+COPY app/log4j.properties /etc/kafka/log4j.properties
+COPY app/connect-log4j.properties /etc/kafka/connect-log4j.properties
 #COPY app/kafka-generate-ssl-automatic.sh /etc/kafka/kafka-generate-ssl-automatic.sh
 
 COPY .build/certs/*.crt /usr/local/share/ca-certificates/
@@ -48,8 +48,8 @@ COPY app/connect-distributed.properties /etc/kafka-connect/connect-distributed.p
 COPY app/start.sh /etc/kafka-connect/start.sh
 COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
-COPY app/log4j.properties /etc/kafka-connect/log4j.properties
-COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
+#COPY app/log4j.properties /etc/kafka-connect/log4j.properties
+#COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
 
 #Config Log4j at Launching Place
 #RUN chmod +x /etc/kafka-connect/log4j.properties
@@ -65,8 +65,8 @@ ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/et
 #RUN chmod +x /etc/kafka/start.sh
 #RUN chmod +x /etc/kafka/setup-certs.sh
 #RUN chmod +x /etc/kafka/connect-distributed.properties
-#RUN chmod +x /etc/kafka/log4j.properties
-#RUN chmod +x /etc/kafka/connect-log4j.properties
+RUN chmod +x /etc/kafka/log4j.properties
+RUN chmod +x /etc/kafka/connect-log4j.properties
 
 RUN chmod +x /etc/kafka-connect/start.sh
 RUN chmod +x /etc/kafka-connect/start_test.sh
