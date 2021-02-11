@@ -7,6 +7,7 @@ SERVER_HOST="$(echo $APP_NAME).herokuapp.com"
 #SERVER_URL=https://$SERVER_HOST
 SERVER_URL=http://$SERVER_HOST
 export CONNECT_REST_ADVERTISED_HOST_NAME=$(echo $APP_NAME).herokuapp.com
+export CONNECT_KAFKA_HEAP_OPTS="-Xms256M -Xmx1G"
 
 export RANDFILE=/etc/kafka-connect/.rnd
 #set RANDFILE=.rnd
