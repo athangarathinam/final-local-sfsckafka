@@ -45,7 +45,7 @@ workflows:
     jobs:
       - deploy-web:
           job_env: "-test"
-          size_env: "private-s"
+          size_env: "private-m"
           scale_env: 1
           context:
             - DOCKER_HUB_CREDS
