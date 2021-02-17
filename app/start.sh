@@ -65,16 +65,16 @@ echo -n "$client_key" >   /etc/kafka-connect/client_key.pem
 echo -n "$client_cert" >  /etc/kafka-connect/client_cert.pem
 echo -n "$trusted_cert" >  /etc/kafka-connect/truststore.pem
 
-#echo "Cat client_key.pem"
-#echo ""
-#cat /etc/kafka-connect/client_key.pem
-#echo "Cat client_cert.pem"
-#echo ""
-#cat /etc/kafka-connect/client_cert.pem
-#echo "Cat truststore.pem"
-#echo ""
-#cat /etc/kafka-connect/truststore.pem
-#echo ""
+echo "Cat client_key.pem"
+echo ""
+cat /etc/kafka-connect/client_key.pem
+echo "Cat client_cert.pem"
+echo ""
+cat /etc/kafka-connect/client_cert.pem
+echo "Cat truststore.pem"
+echo ""
+cat /etc/kafka-connect/truststore.pem
+echo ""
 
 if [ "$?" = "0" ]; then
   echo "No Error while creating .pem files"
