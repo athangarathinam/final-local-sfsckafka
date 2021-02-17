@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+/etc/confluent/docker/run &
 echo $APP_NAME
 
 echo "======== $APP_NAME ====="
@@ -12,6 +12,7 @@ KAFKA_HEAP_OPTS="-Xms256M -Xmx1G"
 
 export RANDFILE=/etc/kafka-connect/.rnd
 #set RANDFILE=.rnd
+
 
 #client_key=os.environ.get('KAFKA_CLIENT_CERT_KEY')
 #client_cert=os.environ.get('KAFKA_CLIENT_CERT')
@@ -201,7 +202,6 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
 curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
-/etc/confluent/docker/run &
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
