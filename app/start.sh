@@ -83,9 +83,9 @@ else
   exit 1
 fi
 
-#echo "keystore - $ /etc/kafka-connect/client_key.pem"
-#echo "trusted - $ /etc/kafka-connect/client_cert.pem"
-#echo "trusted - $ /etc/kafka-connect/truststore.pem"
+echo "keystore - $ /etc/kafka-connect/client_key.pem"
+echo "trusted - $ /etc/kafka-connect/client_cert.pem"
+echo "trusted - $ /etc/kafka-connect/truststore.pem"
 
 keytool -importcert -file  /etc/kafka-connect/truststore.pem -keystore  /etc/kafka-connect/truststore.jks -deststorepass $TRUSTSTORE_PASSWORD -noprompt
 
@@ -145,8 +145,8 @@ echo "======== After postgres_addon_name ========"
 #export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 #BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 
-#export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
-export CONNECT_GROUP_ID="kafka-dimensional-99909_PREFIX"
+export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
+#export CONNECT_GROUP_ID="kafka-dimensional-99909_PREFIX"
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
 export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
@@ -154,19 +154,19 @@ export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 
-#export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
-export CONNECT_OFFSET_STORAGE_TOPIC="sf_kafka_sf_offset"
+export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
+#export CONNECT_OFFSET_STORAGE_TOPIC="sf_kafka_sf_offset"
 
 export CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=3
 #OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
 
-#export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
-export CONNECT_CONFIG_STORAGE_TOPIC="sf_kafka_sf_config"
+export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
+#export CONNECT_CONFIG_STORAGE_TOPIC="sf_kafka_sf_config"
 export CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=3
 #CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 
-#export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
-export CONNECT_STATUS_STORAGE_TOPIC="sf_kafka_sf_status"
+export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
+#export CONNECT_STATUS_STORAGE_TOPIC="sf_kafka_sf_status"
 export CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=3
 #STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
