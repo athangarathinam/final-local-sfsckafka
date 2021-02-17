@@ -190,7 +190,7 @@ echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS"
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
- /etc/confluent/docker/run &
+ #/etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
@@ -199,9 +199,9 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
-# curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://sfsc-kafka-c1-test.herokuapp.com
+curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties http://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
-#sleep infinity
+
+sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
