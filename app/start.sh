@@ -146,7 +146,7 @@ echo "======== After postgres_addon_name ========"
 #export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 #BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 
-export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
+export CONNECT_GROUP_ID=kafka-snowflake-connect-cluster
 #export CONNECT_GROUP_ID="kafka-dimensional-99909_PREFIX"
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
@@ -155,21 +155,14 @@ export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 
-export CONNECT_OFFSET_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-offsets
-#export CONNECT_OFFSET_STORAGE_TOPIC="sf_kafka_sf_offset"
-
+export CONNECT_OFFSET_STORAGE_TOPIC="sf_kafka_sf_offset"
 export CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=3
-#OFFSET_STORAGE_TOPIC=$(echo $kafka_prefix)connect-offsets
 
-export CONNECT_CONFIG_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-configs
-#export CONNECT_CONFIG_STORAGE_TOPIC="sf_kafka_sf_config"
+export CONNECT_CONFIG_STORAGE_TOPIC="sf_kafka_sf_config"
 export CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=3
-#CONFIG_STORAGE_TOPIC=$(echo $kafka_prefix)connect-configs
 
-export CONNECT_STATUS_STORAGE_TOPIC=$(echo $kafka_addon_name)connect-status
-#export CONNECT_STATUS_STORAGE_TOPIC="sf_kafka_sf_status"
+export CONNECT_STATUS_STORAGE_TOPIC="sf_kafka_sf_status"
 export CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=3
-#STATUS_STORAGE_TOPIC=$(echo $kafka_prefix)connect-status
 
 export CONNECT_OFFSET_FLUSH_INTERVAL_MS=10000
 
@@ -200,7 +193,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
-curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
+#curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
