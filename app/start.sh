@@ -145,7 +145,8 @@ echo "======== After postgres_addon_name ========"
 #export CONNECT_BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 #BOOTSTRAP_SERVERS=${!kafka_url_env_var//kafka+ssl:\/\//}
 
-export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
+#export CONNECT_GROUP_ID=$(echo $kafka_addon_name)connect-cluster
+export CONNECT_GROUP_ID="kafka-dimensional-99909_PREFIX"
 #GROUP_ID=$(echo $kafka_prefix)connect-cluster
 
 export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
