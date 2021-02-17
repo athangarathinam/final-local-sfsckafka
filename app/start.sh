@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-/etc/confluent/docker/run &
+
 echo $APP_NAME
 
 echo "======== $APP_NAME ====="
@@ -191,7 +191,7 @@ echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS"
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
- #/etc/confluent/docker/run &
+ /etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
