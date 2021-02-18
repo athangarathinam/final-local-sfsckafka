@@ -2,14 +2,16 @@
 #FROM confluentinc/cp-kafka-connect-base
 FROM confluentinc/cp-kafka-connect:5.5.3
 
+
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
- && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1
+ && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1 \
+ && update-ca-certificates
 
 # Create plugin directory
-RUN mkdir -p /usr/share/java/plugins
-RUN mkdir -p /usr/share/java/kafka-connect-jdbc
+RUN mkdir -p /usr/share/java/plugins \
+&& mkdir -p /usr/share/java/kafka-connect-jdbc \
 #RUN mkdir -p /etc/kafka/kafka-logs
-RUN mkdir -p /etc/kafka-connect/kafka-logs
+&& mkdir -p /etc/kafka-connect/kafka-logs 
 
 #RUN echo -n >    /etc/kafka-connect/client_key.pem
 #RUN echo -n >  /etc/kafka-connect/client_cert.pem
@@ -55,8 +57,6 @@ COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 #RUN chmod +x /etc/kafka-connect/log4j.properties
 #RUN chmod +x /etc/kafka-connect/connect-log4j.properties
 
-RUN update-ca-certificates
-
 # Confluent Hub Config and Installs
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect"
@@ -65,13 +65,12 @@ ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/et
 #RUN chmod +x /etc/kafka/start.sh
 #RUN chmod +x /etc/kafka/setup-certs.sh
 #RUN chmod +x /etc/kafka/connect-distributed.properties
-RUN chmod +x /etc/kafka/log4j.properties
-RUN chmod +x /etc/kafka/connect-log4j.properties
-
-RUN chmod +x /etc/kafka-connect/start.sh
-RUN chmod +x /etc/kafka-connect/start_test.sh
-RUN chmod +x /etc/kafka-connect/setup-certs.sh
-RUN chmod +x /etc/kafka-connect/connect-distributed.properties
+RUN chmod +x /etc/kafka/log4j.properties \
+&& chmod +x /etc/kafka/connect-log4j.properties \
+&& chmod +x /etc/kafka-connect/start.sh \
+&& chmod +x /etc/kafka-connect/start_test.sh \
+&& chmod +x /etc/kafka-connect/setup-certs.sh \
+&& chmod +x /etc/kafka-connect/connect-distributed.properties
 
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
