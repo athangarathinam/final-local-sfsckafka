@@ -59,7 +59,7 @@ COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 
 # Confluent Hub Config and Installs
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
-ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect"
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect,/etc/kafka-connect/jar"
 
 
 #RUN chmod +x /etc/kafka/start.sh
