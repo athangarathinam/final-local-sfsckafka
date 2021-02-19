@@ -1,7 +1,7 @@
 # this is an official Python runtime, used as the parent image
 #FROM confluentinc/cp-kafka-connect-base
 FROM confluentinc/cp-kafka-connect:5.5.3
-
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect,/etc/kafka-connect/jar"
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1 \
@@ -59,7 +59,7 @@ COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 
 # Confluent Hub Config and Installs
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka"
-ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect,/etc/kafka-connect/jar"
+#ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect,/etc/kafka-connect/jar"
 
 
 #RUN chmod +x /etc/kafka/start.sh
