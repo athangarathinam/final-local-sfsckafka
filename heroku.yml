@@ -1,3 +1,18 @@
 build:
   docker:
     worker: Dockerfile
+ connect:
+    image: confluentinc/kafka-connect-datagen:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: connect
+    container_name: connect
+    depends_on:
+      - zookeeper
+      - broker
+      - schema-registry
+    ports:
+      - "8083:8083"
+    volumes:
+      - ~/my-location:/etc/kafka-connect/jar
