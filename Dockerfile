@@ -8,7 +8,8 @@ RUN mkdir -p /usr/share/java/plugins \
 #RUN mkdir -p /etc/kafka/kafka-logs
 && mkdir -p /etc/kafka-connect/kafka-logs 
 
-ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
+#ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
+ENV CONNECT_PLUGIN_PATH="/usr/share/java/kafka-connect-jdbc"
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest  \
@@ -47,7 +48,7 @@ COPY app/connect-distributed.properties /etc/kafka-connect/connect-distributed.p
 COPY app/start.sh /etc/kafka-connect/start.sh
 COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
-COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar /usr/share/java/kafka-connect-jdbc/snowflake-kafka-connector-1.5.1.jar
+#COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar /usr/share/java/kafka-connect-jdbc/snowflake-kafka-connector-1.5.1.jar
 #COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.12.jar /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-3.12.12.jar
 #COPY app/log4j.properties /etc/kafka-connect/log4j.properties
 #COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
