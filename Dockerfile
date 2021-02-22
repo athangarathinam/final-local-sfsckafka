@@ -52,6 +52,7 @@ COPY app/connect-distributed.properties /etc/kafka-connect/connect-distributed.p
 COPY app/start.sh /etc/kafka-connect/start.sh
 COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
+COPY /usr/share/java/kafka-connect-jdbc/kafka-connect-jdbc-5.5.3.jar /usr/share/confluent-hub-components/kafka-connect-jdbc-5.5.3.jar
 #COPY app/log4j.properties /etc/kafka-connect/log4j.properties
 #COPY app/connect-log4j.properties /etc/kafka-connect/connect-log4j.properties
 
@@ -73,6 +74,7 @@ RUN chmod +x /etc/kafka/log4j.properties \
 && chmod +x /etc/kafka-connect/start_test.sh \
 && chmod +x /etc/kafka-connect/setup-certs.sh \
 && chmod +x /etc/kafka-connect/connect-distributed.properties
+&& chmod +x /usr/share/confluent-hub-components/kafka-connect-jdbc-5.5.3.jar
 
 
 #RUN chmod +x /etc/kafka/kafka-generate-ssl-automatic.sh
