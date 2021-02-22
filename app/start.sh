@@ -218,7 +218,7 @@ cp bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.ja
 #plugin.path=.apt/usr/share/java
 #PROPERTIES
 
-curl -vvv -X PUT https://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Content-Type: application/json" --data '{
+curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Content-Type: application/json" --data '{
     "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
