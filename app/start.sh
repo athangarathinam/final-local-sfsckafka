@@ -222,8 +222,9 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
     "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
-		"tasks.max":"8","topics":"salesforce_kafka_snowflakes.salesforce.period",
-		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.period:PERIOD",
+		"tasks.max":"8",
+		"topics":"salesforce_kafka_snowflakes.salesforce.calendar",
+		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.calendar:PERIOD",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
