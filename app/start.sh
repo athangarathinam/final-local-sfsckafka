@@ -204,7 +204,7 @@ curl -vvv -i -X PUT -H  "Content-Type:application/json" \
     "connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
     "tasks.max":"8",
     "topics":"salesforce_kafka_snowflakes.salesforce.period",
-	"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.period:PERIOD",
+    "snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.period:PERIOD",
     "buffer.count.records":"10000",
     "buffer.flush.time":"60",
     "buffer.size.bytes":"5000000",
@@ -215,7 +215,7 @@ curl -vvv -i -X PUT -H  "Content-Type:application/json" \
     "snowflake.database.name":"SF_KAFKA_SF",
     "snowflake.schema.name":"SF_KAFKA",
     "key.converter":"org.apache.kafka.connect.storage.StringConverter",
-    "value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter",
+    "value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
       }
    }'
 sleep infinity
