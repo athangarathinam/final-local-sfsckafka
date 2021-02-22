@@ -8,7 +8,7 @@ RUN mkdir -p /usr/share/java/plugins \
 #RUN mkdir -p /etc/kafka/kafka-logs
 && mkdir -p /etc/kafka-connect/kafka-logs 
 
-ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect"
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest  \
