@@ -77,8 +77,8 @@ RUN chmod +x /etc/kafka/log4j.properties \
 && chmod +x /etc/kafka-connect/start.sh \
 && chmod +x /etc/kafka-connect/start_test.sh \
 && chmod +x /etc/kafka-connect/setup-certs.sh \
-&& chmod +x /etc/kafka-connect/connect-distributed.properties
-&& chmod +x /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
+&& chmod +x /etc/kafka-connect/connect-distributed.properties \
+&& chmod +x /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar \
 && chmod +x /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar
 #&& chmod +x /usr/share/confluent-hub-components/kafka-connect-jdbc-5.5.3.jar
 
