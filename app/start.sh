@@ -2,8 +2,6 @@
 
 echo $APP_NAME
 
-/etc/confluent/docker/run &
-
 echo "======== $APP_NAME ====="
 SERVER_HOST="$(echo $APP_NAME).herokuapp.com"
 #SERVER_URL=https://$SERVER_HOST
@@ -185,7 +183,7 @@ echo "Bootstrap Values: $CONNECT_BOOTSTRAP_SERVERS"
 
 echo "======== After CONNECT_PLUGIN_PATH ====="
 echo "============Starting Process========= "
- #/etc/confluent/docker/run &
+ /etc/confluent/docker/run &
 echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
