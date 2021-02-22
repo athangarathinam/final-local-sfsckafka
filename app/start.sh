@@ -196,7 +196,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 
 curl -vvv -X PUT -H "Content-Type: application/json" \
-https:\\sfsc-kafka-c1-test.herokuapp.com\connectors/\
+http:\\sfsc-kafka-c1-test.herokuapp.com\connectors/\
    --data '{
         "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
