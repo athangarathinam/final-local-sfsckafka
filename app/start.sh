@@ -191,6 +191,13 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #wget https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.1/snowflake-kafka-connector-1.5.1.jar
 #cp snowflake-kafka-connector-1.5.1.jar /etc/kafka
 
+wget https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.1/bc-fips-1.0.1.jar
+cp bc-fips-1.0.1.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar
+
+wget https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar
+cp bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
+ 
+
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
