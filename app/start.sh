@@ -196,6 +196,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 
 curl -vvv -X PUT -H "Content-Type: application/json" \
+https:\\sfsc-kafka-c1-test.herokuapp.com\connectors/\
    --data '{
         "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
@@ -212,8 +213,7 @@ curl -vvv -X PUT -H "Content-Type: application/json" \
 		"snowflake.database.name":"SF_KAFKA_SF",
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
-		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}' \
-		https:\\sfsc-kafka-c1-test.herokuapp.com\connectors/
+		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}'
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
