@@ -8,14 +8,15 @@ RUN mkdir -p /usr/share/java/plugins \
 #RUN mkdir -p /etc/kafka/kafka-logs
 && mkdir -p /etc/kafka-connect/kafka-logs 
 
-#ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
-ENV CONNECT_PLUGIN_PATH="/usr/share/java/kafka-connect-jdbc,usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar,usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.12.jar,/etc/kafka-connect"
-
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.1 \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest  \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-http:latest \
  ##&& confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1 \
  && update-ca-certificates
+ 
+ #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
+ENV CONNECT_PLUGIN_PATH="/usr/share/java/kafka-connect-jdbc,usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar,/etc/kafka-connect"
+
 
 #install vim and update 
 #RUN dpkg -i debian-archive-keyring_2017.5~deb8u1_all.deb -y \
