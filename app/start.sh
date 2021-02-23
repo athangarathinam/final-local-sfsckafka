@@ -204,6 +204,11 @@ cp bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.ja
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 
+echo -e "\n\n=============\nWaiting for Kafka Connect to start listening on localhost ⏳\n=============\n"
+while [ $(curl -s -o /dev/null -w %{http_code} http://sfsc-kafka-c1-test.herokuapp.com/connectors) -ne 200 ] ; do
+  echo -e "\t" $(date) " Kafka Connect listener HTTP state: " $(curl -s -o /dev/null -w %{http_code} http://sfsc-kafka-c1-test.herokuapp.com/connectors) " (waiting for 200)"
+  sleep 5
+done
 curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Content-Type: application/json" --data '{
     "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
