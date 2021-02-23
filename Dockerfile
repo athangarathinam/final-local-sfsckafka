@@ -49,10 +49,10 @@ COPY app/connect-distributed.properties /etc/kafka-connect/connect-distributed.p
 COPY app/start.sh /etc/kafka-connect/start.sh
 COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
-COPY app/bc-fips-1.0.1.jar /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar
-COPY app/bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
-COPY app/bc-fips-1.0.1.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar
-COPY app/bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
+#COPY app/bc-fips-1.0.1.jar /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar
+#COPY app/bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
+#COPY app/bc-fips-1.0.1.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar
+#COPY app/bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
 #COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar /usr/share/java/kafka-connect-jdbc/snowflake-kafka-connector-1.5.1.jar
 #COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.12.jar /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-3.12.12.jar
 #COPY app/log4j.properties /etc/kafka-connect/log4j.properties
@@ -75,13 +75,13 @@ RUN chmod +x /etc/kafka/log4j.properties \
 && chmod +x /etc/kafka-connect/start.sh \
 && chmod +x /etc/kafka-connect/start_test.sh \
 && chmod +x /etc/kafka-connect/setup-certs.sh \
-&& chmod +x /etc/kafka-connect/connect-distributed.properties \
-&& chmod +x /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar \
-&& chmod +x /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar \
+&& chmod +x /etc/kafka-connect/connect-distributed.properties 
+#&& chmod +x /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar \
+#&& chmod +x /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar \
 #&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.3.jar \
 #&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.2.jar
-&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar \
-&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar 
+#&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar \
+#&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar 
 #&& chmod +x /usr/share/confluent-hub-components/kafka-connect-jdbc-5.5.3.jar
 
 
