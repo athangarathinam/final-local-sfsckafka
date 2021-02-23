@@ -188,16 +188,6 @@ echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
 
-#wget https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.1/bc-fips-1.0.1.jar
-#cp bc-fips-1.0.1.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar
-#wget https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar
-#cp bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
-#wget https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.1/bc-fips-1.0.1.jar
-#cp bc-fips-1.0.1.jar /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar
-#wget https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar
-3cp bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
- 
-
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties $SERVER_URL/connectors
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
@@ -219,8 +209,7 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
 		"buffer.size.bytes":"5000000",
 		"snowflake.url.name":"wda05749.snowflakecomputing.com:443",
 		"snowflake.user.name":"MMUSAPETA",
-		"snowflake.private.key":"MIIFLTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIvykkL/zxtrUCAggAMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBBcDpE9qT6i89KKeBz90a7tBIIE0P13tDDvw0fcBsDBR2TE7B7II1xU0R+4dsjsEY1CAqvwoJPJAqwN5QDaI2By+gKcFzAvp5NXNVuGCT6DuVWXlCNZFz2C3BePyFAzAt9fltuRbiDkl2z19IGXzWt91rvcT028r28I3QiKpwTVSdcQTgCrBSzJoIpp86j7/kNsHq5ldS8rKosK55t5gd+CVwOMiEcJkfOItmoZNrhJHx5d9LRZ8EYqffftHF1FbK3S9vL9rGZXt1xpNSCY34Tjl3pAsXfuUlcuO37Q8O7d9ZKt1stcQ1q7+eXtU10Q3Nk1CFS0CSzH7uNXeKR1DbuEHV3rJd+n9DngJKaShL1vxJEVfpAplRjN9TTPc6gtL0ZxB6vrwDER99Q+tLjVExEN8z1BqAFqsqzk03nmEw4D/MSQrSzgkb3QtO1o4iWSrQWDo2fp25vuwevyaU5dfD05rf0sW9YiaF4n6BTS+yZg+AbKL9PQ4+d6p0bDRfWdDPW91vwdrMpsXjGPnUCx5bOP+qjp7/n+QRgr2UIb7JpK2++7EqCMsw4Wkem7uY21ygtJgZPtjNTd2LB0TBMjmtWBLK7PU1mNAUSw0gLJBQPu7REgpPrvyYNSHONB0otQO6JUStzJZ00LrWwj6b4FkgU4uR3MKVTZLaCUca0Do1Rgw6VBEQLFGNxeBDRutGI4MMmJEQlHYZPfiZIkjsfloqa/8kESt/CIGaphKCTZFGDVRUzU8JJ51WXs3rGcZOGxV1DPlahaEsOI08i/KMyJMYItWWgtKtCUvZJ/ATjog4XCN/UTq57LBfW5SSVBA/pLPbqYqL4JSxJjM21fOSLfU6L2q0xnpRSM5Ft67iLXRjM7GYKBgnfwE6XEPOGVDAtRowIoGEprWPiOnX15cIaZvott0Fbr6RtzGjt2uXePHz+LvpRyrOjSl9e9fGeUZmZoxW37NpLYkLLBqMNZGAgKn5tnr6029Cy6x1R8tngKa+VTNYgXxclGx2WIiYeNT+OQ3KXtaPGHQA8tvrJpmx5ibolqLJxVJgzU9f8G6+Irtru4cjCZRQUFgOUac3cne3NupAIW3bMNWxYfRxWikhJua1ilj/RdKZ2RMb7gCqB3doW3epGyBpj4p9pQPoELC5DP7pxZ+a0brD4I8AaQ8iBdDj67w98kRifDxfofaEnidx57gvt/dWgouRxMHxtLPkUbbCucvL0LBwzwOBb7AK4STsm6D1NXunIpdqZCmlqIN+P43WlPB0YhUhW8hPcZARptr92AMzddTU3Hz3P0pnNCI9PE1gHkfKWnJyR0gPm297aGAtW1YGlmVDa/Ct3SncuC6HBM6vWX8p71JF77tdqfNOk7+inybv50q8oIn03yOTWvMVOKYn6hGUjAfPB5a90ckZs9BsWjx89zbqa5Zaqw/mr2V5Zfz12RpBUazfsSpURV+ZaM5/oqi5LqZztd5vhoYqU9OmR9gyUVcB+3yAJ+K+2EBbtuaipqKr4KKad9kfHC1/IXwgEAakJy/iGcZJglueDxXtojBJyjzXUFKJBf5gswdISSGZNqLQ/rl5N8tKhPRxKCPw6MGDdYiw4sBre1dqJGfwWLT1h1z5IsmtjggJWKrk3XzY0PckmCDn1s0z0GNOyjnFFCpqYHvcPqNN1QbJPjvb8",
-		"snowflake.private.key.passphrase":"MNjklpo0897",
+		"snowflake.private.key":"MIIEogIBAAKCAQEAvlj42xPbTSt0BpK03W52qwwJykpq1ImWnDkBNwS0jj6hBKdQ5GsrN9FWemcsKjxJIM32XGAcC5VGyTYzzQEkLVOfzdDaye8vkbyaPcHzcDxfc1t94Fe/SnGYj76w/6Stel/PuqGXlEALYZEF7u3pQeA/pz0KcK0vt+aYOBKr1sBcy+uPZ22t37WduZNral59kwkx8U0Y9Sj7MPq7mzu5lnHNqXfJ/yG6n4lPxCKP98+XelKHANLCrGKrC72cq0WZu9iMuvEX4jB71eiS7RryCGBv565nPiblXddnDHKcIzzvzhidP9FcHQA1UFYW0o4fw8Rfg4SCOY/9xDb/y21dGwIDAQABAoIBAE5hvuAf1h959EY8pUPFmBIpW+K0MDejDKT6CFkKk/s7KP0MlQ/qXZqXll/DGnmt54MdrQQvA311k/eJXV1eyfHsTJLpHR8oYlNF8dHaiw89nSSYmUYHfBsAmg0fPi2XN2R8DcNRhWSj1svvdx0DVRkuaafJSAJMHqlAyI/WiHJegCS2qvLWZqk1yOK+c0zc4IQzAaONCMP3dVN/a6+fN/mU8tccCb0CN3+pr8/Wp3qIiB3gaJYxtK52n71Te7ogBKKg98ZMtM4WIbonWz9D2fRVBJZCVoojOtNkfAuPK6sUPLArwc04iz1jZtpewoSdARtxivtHSuSRISo/JyLha3ECgYEA5ddUsdEu8TOiYnqeyx4YnKxvynkFOLCIU6ZINtlZBxqgQoFc873aWtkLPOdN1hgcLb6pyTbL0/Gxu8Ylb0t77bPi0TCkJt22OhXW6PNEhH3Ij4xJHzgIbBCZLDGZgs0FGtSWYrsNe2fNpWitUi26cxfFEGVqb5feouFFwnFviiMCgYEA1ALz9wE02QoFThSH4K+vYPYy5kO7LQxTY0fVJBM9Iavp3J9Ow9eV7snF3A6GIZLTZz5rWk2iPUM9a84gAemt7XWwVC1+dSj9boMhPHtoF/TdoMnSzLhAEHS9c+AGfz44Iz/o8Zvq1SUbmoWf5lWy4kX1jakqK0I8Bk4o/rls5KkCgYB5vld0YNM2nB0VgNH/0Q9EXepRG01yu79aX6e8td/8bVQaJh+wVA4HNRRIzFRkZRz39hhFJqtMtqdoSQqnKxqXzEMGf3dTxvixR8QwXDsc2uuTbcGFsc50P06DJDqmGCbuEVEfNulrRo6dYRb9go9SS3LsvmtkdNNO/3hOCHwGdQKBgG84DVuqmlqxUw8e3hkUkOBAx3rcVTjQmn4elMWUAiHD2a8PM3axhcn6t301cU/zgktLB24cA9w3heUkAM6AE+naL2I5a3lyw2BSEgF0i6rlnc5XkeorThBT7X74KvBdZ322bTEyJgMisFRjfPqMQodJRAPIloKTAIIeRos6ItHhAoGAS1nRHTjZEOO8rMiQXw2HVSP9+IMSB1Fvq08YKThB1yuF/FQx4NJytdJUQtUBmSrm/2XIQFY5GRzumli7QOPZSEucmXGHZCpa0Q3s0THJop50f6OcTOkZmJjS0LzNERn9ZtI1w76QF+5rW4TyVArnIOnsrY7gga7jlj8n/ot+F7E=",
 		"snowflake.database.name":"SF_KAFKA_SF",
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
