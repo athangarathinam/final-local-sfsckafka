@@ -202,8 +202,8 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
 		"tasks.max":"8",
-		"topics":"salesforce_kafka_snowflakes.salesforce.calendar",
-		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.calendar:PERIOD",
+		"topics":"sf_kafka_sf.salesforce.user",
+		"snowflake.topic2table.map":"sf_kafka_sf.salesforce.user:PERIOD",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
@@ -213,7 +213,9 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
 		"snowflake.database.name":"SF_KAFKA_SF",
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
-		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}'
+		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
+		   }
+		}'
 		
   
 sleep infinity
