@@ -51,7 +51,7 @@ COPY app/start_test.sh /etc/kafka-connect/start_test.sh
 COPY app/setup-certs.sh /etc/kafka-connect/setup-certs.sh
 COPY app/bc-fips-1.0.1.jar /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.1.jar
 COPY app/bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
-COPY app/bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
+COPY app/bc-fips-1.0.1.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.1.jar
 COPY app/bcpkix-fips-1.0.5.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar
 #COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.1.jar /usr/share/java/kafka-connect-jdbc/snowflake-kafka-connector-1.5.1.jar
 #COPY usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.12.jar /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-3.12.12.jar
