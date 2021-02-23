@@ -202,8 +202,8 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
 		"tasks.max":"8",
-		"topics":"sf_kafka_sf.salesforce.user",
-		"snowflake.topic2table.map":"sf_kafka_sf.salesforce.user:PERIOD",
+		"topics":"sf_kafka_sf.salesforce.navigationmenuitem",
+		"snowflake.topic2table.map":"sf_kafka_sf.salesforce.navigationmenuitem:PERIOD",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
@@ -215,9 +215,7 @@ curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/connectors/ -H "Conten
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
 		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
 		   }
-		}'
-		
-  
+		}'  
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
