@@ -128,6 +128,9 @@ export CONNECT_CONSUMER_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
 #export CONNECT_LOG4J_LOGGERS=TRACE, file, stdout, stderr, kafkaAppender, connectAppender, INFO
 #export CONNECT_LOG4J_ROOT_LOGLEVEL=TRACE, file, stdout, stderr, kafkaAppender, connectAppender, INFO
 
+export CONNECT_LOG4J_LOGGERS="io.confluent.connect=DEBUG"
+
+
 export CONNECT_SECURITY_PROTOCOL=SSL
 export CONNECT_SSL_TRUSTSTORE_LOCATION=/etc/kafka-connect/truststore.jks
 export CONNECT_SSL_TRUSTSTORE_PASSWORD=$TRUSTSTORE_PASSWORD
