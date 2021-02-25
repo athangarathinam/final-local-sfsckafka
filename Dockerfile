@@ -14,8 +14,8 @@ RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.4
  ##&& confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1 \
  && update-ca-certificates
  
-RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar" -o /usr/share/java/kafka-connect-jdbc//bc-fips-1.0.2.jar
-RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar"" -o /usr/share/java/kafka-connect-jdbc//bcpkix-fips-1.0.5.jar
+RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2/bc-fips-1.0.2.jar" -o /usr/share/java/kafka-connect-jdbc/bc-fips-1.0.2.jar
+RUN curl -sSL "https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fips-1.0.5.jar" -o /usr/share/java/kafka-connect-jdbc/bcpkix-fips-1.0.5.jar
 
 COPY bc-fips-1.0.2.jar /usr/share/java/kafka-connect-jdbc/
 COPY bcpkix-fips-1.0.5.jar /usr/share/java/kafka-connect-jdbc/
