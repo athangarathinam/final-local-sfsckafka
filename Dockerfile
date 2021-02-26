@@ -9,7 +9,7 @@ RUN mkdir -p /usr/share/java/plugins \
 && mkdir -p /etc/kafka-connect/kafka-logs 
 
 RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.5.2 \
- && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:3.12.17  \
+ && confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:latest  \
  && confluent-hub install --no-prompt confluentinc/kafka-connect-http:latest \
  ##&& confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.1 \
  && update-ca-certificates
