@@ -196,11 +196,12 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 
-curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com -H "Content-Type: application/json" --data '{
+curl -vvv -X POST http://sfsc-kafka-c1-test.herokuapp.com/ -H "Content-Type: application/json" --data '{
     "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
-		"tasks.max":"8","topics":"salesforce_kafka_snowflakes.salesforce.period",
+		"tasks.max":"8",
+		"topics":"salesforce_kafka_snowflakes.salesforce.period",
 		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.period:PERIOD",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
