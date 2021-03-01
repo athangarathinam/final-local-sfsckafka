@@ -213,7 +213,7 @@ curl -vvv -X POST https://sfsc-kafka-c1-test.herokuapp.com:$PORT/connectors -H "
 		"snowflake.database.name":"SF_KAFKA_SF",
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
-		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeAvroConverter"
+		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
 		}
 		}'
 sleep infinity
