@@ -215,7 +215,8 @@ curl -vvv -X POST -H "Content-Type: application/json" --data '{
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
 		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}'
-		http://sfsc-kafka-c1-test.herokuapp.com/connectors
+		http://sfsc-kafka-c1-test.herokuapp.com
+		#http://sfsc-kafka-c1-test.herokuapp.com/connectors
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
