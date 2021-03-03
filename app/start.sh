@@ -197,7 +197,7 @@ echo "Heroku Port - $CONNECT_REST_PORT"
 #curl -vvv -X POST -H "Content-Type: application/json" --data /etc/kafka-connect/connect-distributed.properties https://sfsc-kafka-c1-test.herokuapp.com/connectors
 
 #curl -vvv -X POST https://sfsc-kafka-c1-test.herokuapp.com:$PORT/salesforce-kafka-snowflakes -H "Content-Type: application/json" --data '{
-curl -vvv -X POST https://sfsc-kafka-c1-test.herokuapp.com/connectors -H "Content-Type: application/json" --data '{
+curl -vvv -X POST -H "Content-Type: application/json" --data '{
     "name":"KafkaSinkConnectortoSnowflakes",
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
@@ -214,9 +214,8 @@ curl -vvv -X POST https://sfsc-kafka-c1-test.herokuapp.com/connectors -H "Conten
 		"snowflake.database.name":"SF_KAFKA_SF",
 		"snowflake.schema.name":"SF_KAFKA",
 		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
-		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
-		}
-		}'
+		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}'
+		http://sfsc-kafka-c1-test.herokuapp.com/connectors
 sleep infinity
  #KAFKA_HEAP_OPTS="-Xms256M -Xmx256M " /usr/bin/connect-distributed /etc/kafka-connect/connect-distributed.properties
 #exec /etc/confluent/docker/run
