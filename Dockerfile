@@ -23,10 +23,6 @@ ADD https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.5/bcpkix-fip
 ADD https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.12.17/snowflake-jdbc-3.12.17.jar /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-3.12.17.jar
 ADD https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.12.17/snowflake-jdbc-3.12.17.jar /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.17.jar
 
-COPY bc-fips-1.0.2.jar /etc/kafka-connect/jars/
-COPY bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/
-
-
 #ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/usr/share/java/kafka-connect-jdbc,/etc/kafka-connect"
 ENV CONNECT_PLUGIN_PATH="/usr/share/java/kafka-connect-jdbc/*,/usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-kafka-connector-1.5.2.jar,/usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.12.jar,/usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/*,/etc/kafka-connect/*"
 
