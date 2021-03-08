@@ -98,7 +98,12 @@ RUN chmod +x /etc/kafka/log4j.properties \
 && chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bc-fips-1.0.2.jar \
 && chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.5.jar \
 && chmod +x /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-3.12.17.jar \
-&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.17.jar
+&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/snowflake-jdbc-3.12.17.jar \
+&& chmod +x /etc/kafka/libs/bc-fips-1.0.2.jar \
+&& chmod +x /etc/kafka/libs/bcpkix-fips-1.0.5.jar \
+&& chmod +x /etc/kafka-connect/libs/bc-fips-1.0.2.jar \
+&& chmod +x /etc/kafka-connect/libs/bcpkix-fips-1.0.5.jar
+
 
 
 #&& chmod +x /usr/share/confluent-hub-components/snowflakeinc-snowflake-kafka-connector/lib/bcpkix-fips-1.0.3.jar \
