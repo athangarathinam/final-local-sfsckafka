@@ -15,5 +15,5 @@ RUN apt-get update && apt-get install -y
 # datagen config
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 
-COPY start.sh /etc/kafka-connect/start.sh
+COPY app/start.sh /etc/kafka-connect/start.sh
 CMD bash /etc/kafka-connect/start.sh
