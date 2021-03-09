@@ -105,8 +105,7 @@ echo "Secuirty protocal: H-$HOME TP-$TRUSTSTORE_PASSWORD KP-$KEYSTORE_PASSWORD"
 
 echo "======== After postgres_addon_name ========"
 
-
-export CONNECT_GROUP_ID=kafka-snowflake-connect-cluster
+export CONNECT_GROUP_ID=kafka-connect-snowflake-cluster
 
 export CONNECT_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
 export CONNECT_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
