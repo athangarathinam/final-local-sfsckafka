@@ -145,7 +145,7 @@ curl -vvv -X POST -H "Content-Type: application/json" --data '{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
 		"tasks.max":"8",
 		"topics":"salesforce_kafka_snowflakes.salesforce.calendar",
-		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.calendar:CALENDAR",
+		"snowflake.topic2table.map":"salesforce_kafka_snowflakes.salesforce.calendar:CALENDAR",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
