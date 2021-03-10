@@ -139,4 +139,24 @@ echo " Server URL $SERVER_URL "
 
 echo "Heroku Port - $CONNECT_REST_PORT"
 
+curl -vvv -X POST -H "Content-Type: application/json" --data '{
+    "name":"KafkaSinkConnectortoSnowflakes",
+	"config":{
+		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
+		"tasks.max":"8",
+		"topics":"salesforce_kafka_snowflakes.salesforce.verint_activity__c",
+		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.verint_activity__c:VERINT_ACTIVITY__C",
+		"buffer.count.records":"10000",
+		"buffer.flush.time":"60",
+		"buffer.size.bytes":"5000000",
+		"snowflake.url.name":"https://wda05749.snowflakecomputing.com:443",
+		"snowflake.user.name":"MMUSAPETA",
+		"snowflake.private.key":"MIIFLTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQI94ng57q0DYcCAggAMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBA2vp7JZgq58XsXCEMWvoO3BIIE0I9xLbeC4ncRvSFpHE9yETXo2cGlYBFpNMeJIu4cLnb3ymuCAUZ9pxrolc/74sDy/s8YABbEfKtxk/Da3qhv5rJH7nN6dtdZ42Jh2fX8WgYNibjyXLIn1qCIupe7lBZy/XSf3cEuvzkjY4HZb+pbAc+hm1oizJ0bSerboVaNkdJ6/XK0i3OWABkbvzATMkPUhI5dTWGFUMMUtIhjJEeO0zQRz2vfYdVwTuwNjfuqauPSrYqXBGr63BOKWS/EvTprdr/Cc0yBnJjWZ+GuF2zLtXy4tNkPSADRZA+u6INcvWmGYfKbaxhvMEyOxMVjpnLUsW+uR1/i8PAFTt2KXb9SM0ieE9qmgo1c+gtjr4SK0UYvRBbm3tE814BzK4HMwZZJ4j3sfjb+abr+OOM1QcWiSyfG588+/e5f5jCAegZMsHIt082ZC4LMHun+2dD7OYCnz9HzHbIIapPq2i+LR/Sr7Rb+iaC3a8kM84F8FvO/mqmv/BvXkviuL4cGv48dHO1Jhl8pN5BNJREtAi7WvyKCIPRtK27r2SBigcFC7K6alKa5QqAcIflMK6WQjp2/BewOIoCUTq7OPqgzpjFhknSF3kyg0mXG22XSjbwRLc67DchUQa3Lvnc00QDR9kQBqp2e+NqsIFxUvIFK+zJ6EoROfqLmyWQpKH9TAcoZweZrE7wzl9JFGUbAwsqMFJDVsbsoQz8SlVGJTZvirlKBpkiNTEUhuoEtYh8uOwJFeASc4WqBMJYG1tYg3o1kMgAfgkoBuyI6oEpemwucBZNac9u6gGJ2TTDItDsf3Ts+a8oIfTauarWU5oqiFU3wo1EebrfywjgnB4csu2Dzy2Yzwag6kvRLJXoWzBSy+P54CPaUdbXk9pwaetjpcf37MthbcH0w32Q3eTMwFP9Ha675X+lUwGWW2JQALJSKiUzRxfgHux9eMSr631Juk54JdmTOGFiX7twykjXEnm9mcWm5W1SHIjwxbdWf36sprZQwjJZYZZwswRbkH9M/qv1RMBm+aRt7JvPs3UBME7SjS/3KoXX1zYSCmJC78rhvSn1NwqR8zPejioqlvpNSj1x9I93gI8RotGnqgWwNhMEmYOMIQsKtT/oslhg/bqmspZ6L2p4ysjJ10Xsuni1uWIQQ7Fmfy6cEVvdvTyYVDbrDYfCUx4hA421eKPk7El5MDb3RY6yUqT+ND5O3FZIFPxRoCtiF4QGtrHZeqbVVRB0Bio6V88R5xK6Yu6yCedXvd37u/SQLLxnEhjXyb5amcKawxsnhaoPkMYHQEZv4eM9FoY2+iv9d7ycCJM+VGg9ArZ8slVvwaMEwif16fZeTAYgCuwJq5s9ePMb1fC3OflRF7r8f5weEqDV8EgoRkW6fIUjoh8ZEN/pZn+csr41uB0LtC+QnYRfvg5no+1JAGGeJxe9V1faFTw5Y7wOt1bOJkkZDVFpxaiw8F994wHxoRBGHp6uog8DxQqDy5AY1LiNmTW8JI5iN+XgbtsHK1Gkv3k/duxVnvVYzg/GmeTiS8CSBftVynY53l57Xn0EVBu5nHvQ51+Sl/aA49CXHU9CWsDpDUxfJnVK5ExTKTZ0XQXKf1MGZLT1iwF0ueK1WCaHJ8KilDQWUzk64s6mAhszyY3+ekaYGVYkl",
+		"snowflake.private.key.passphrase":"MNjklpo0897",
+		"snowflake.database.name":"SF_KAFKA_SF",
+		"snowflake.schema.name":"PUBLIC",
+		"key.converter":"org.apache.kafka.connect.storage.StringConverter",
+		"value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"}}' \
+		https://sfsc-kafka-c1-test.herokuapp.com/connectors
+
 sleep infinity
