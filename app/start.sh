@@ -144,8 +144,8 @@ curl -vvv -X POST -H "Content-Type: application/json" --data '{
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
 		"tasks.max":"8",
-		"topics":"salesforce_kafka_snowflakes.salesforce.verint_activity__c",
-		"snowflake.topic2table.map": "salesforce_kafka_snowflakes.salesforce.verint_activity__c:VERINT_ACTIVITY__C",
+		"topics":"sf_kafka_sf.salesforce.verint_activity__c",
+		"snowflake.topic2table.map": "sf_kafka_sf.salesforce.verint_activity__c:VERINT_ACTIVITY__C",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
