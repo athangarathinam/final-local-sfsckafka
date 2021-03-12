@@ -140,12 +140,12 @@ echo " Server URL $SERVER_URL "
 echo "Heroku Port - $CONNECT_REST_PORT"
 
 curl -vvv -X POST -H "Content-Type: application/json" --data '{
-    "name":"KafkaSinkConnectortoSnowflakes",
+   "name":"KafkaSinkConnectortoSnowflakesAccount",
 	"config":{
 		"connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
 		"tasks.max":"8",
-		"topics":"salesforce_kafka_snowflakes.salesforce.calendar",
-		"snowflake.topic2table.map":"salesforce_kafka_snowflakes.salesforce.calendar:CALENDAR",
+		"topics":"sfkafkasftest.salesforce.account",
+                "snowflake.topic2table.map": "sfkafkasftest.salesforce.account:ACCOUNT",
 		"buffer.count.records":"10000",
 		"buffer.flush.time":"60",
 		"buffer.size.bytes":"5000000",
