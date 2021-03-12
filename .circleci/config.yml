@@ -30,22 +30,22 @@ jobs:
       - run: |
           export HEROKUAPP=$HEROKU_APP_NAME<< parameters.job_env >>
 
-          docker build -t registry.heroku.com/$HEROKUAPP/worker .
+          docker build -t registry.heroku.com/$HEROKUAPP/web .
           docker login -u $HEROKU_LOGIN -p $HEROKU_TOKEN registry.heroku.com
-          docker push registry.heroku.com/$HEROKUAPP/worker:latest
+          docker push registry.heroku.com/$HEROKUAPP/web:latest
 
           chmod +x .circleci/setup-heroku.sh
           .circleci/setup-heroku.sh
 
-          heroku container:release worker -a $HEROKUAPP
-          heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
+          heroku container:release web -a $HEROKUAPP
+          heroku ps:scale web=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
 
 workflows:
   build-deploy-test:
     jobs:
       - deploy-web:
           job_env: "-test"
-          size_env: "private-s"
+          size_env: "private-m"
           scale_env: 1
           context:
             - DOCKER_HUB_CREDS

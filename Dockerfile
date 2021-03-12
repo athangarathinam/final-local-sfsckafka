@@ -1,27 +1,19 @@
+FROM confluentinc/cp-kafka-connect:5.3.1
+# Create plugin directory
+RUN mkdir -p /usr/share/java/plugins
+RUN mkdir -p /usr/share/java/kafka-connect-jdbc
+RUN mkdir -p /etc/kafka-connect/jars
+# Add Snowflake connector jar
+RUN curl -sSL "https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/1.5.0/snowflake-kafka-connector-1.5.0.jar" -o /usr/share/java/plugins/snowflake-kafka-connector-1.5.0.jar
+# Add Snowflake JDBC connector jar
+RUN curl -sSL "https://repo1.maven.org/maven2/net/snowflake/snowflake-jdbc/3.10.3/snowflake-jdbc-3.10.3.jar" -o /usr/share/java/kafka-connect-jdbc/snowflake-jdbc-connector-3.10.3.jar
+# Add bouncycastle jars
+COPY bc-fips-1.0.2.jar /etc/kafka-connect/jars/bc-fips-1.0.2.jar
+COPY bcpkix-fips-1.0.5.jar /etc/kafka-connect/jars/bcpkix-fips-1.0.5.jar
+# RUN apt-get update
+RUN apt-get update && apt-get install -y
+# datagen config
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 
-# this is an official Python runtime, used as the parent image
-FROM python:3.8-buster
-
-# add the current directory to the container as /app
-COPY ./app /app
-
-# set the working directory in the container to /app
-WORKDIR /app
-
-# Install OpenJDK-11
-RUN apt-get update -y \
-    && apt-get upgrade -y \
-    && apt-get purge -y \
-    && apt-get clean -y \
-    && apt-get autoremove -y \
-    && rm -rf /tmp/* /var/tmp/* \
-    && rm -rf /var/lib/apt/lists/*
-
-# and internal root ca certs
-COPY .build/certs/*.crt /usr/local/share/ca-certificates/
-
-RUN update-ca-certificates && pip install --trusted-host pypi.python.org wheel \
-    && pip install --trusted-host pypi.python.org -r requirements.txt
-
-# execute the Flask app
-CMD python kafka-producer.py
+COPY app/start.sh /etc/kafka-connect/start.sh
+CMD bash /etc/kafka-connect/start.sh
