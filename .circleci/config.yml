@@ -1,0 +1,84 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@1.2.3
+  slack: circleci/slack@4.1.1
+
+jobs:
+  deploy-web:
+    docker:
+      - image: cimg/base:stable
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+        environment:
+          TZ: "America/Denver"
+    parameters:
+      job_env:
+        type: string
+        default: "-dev"
+      size_env:
+        type: string
+      scale_env:
+        type: integer
+    environment:
+      HEROKU_APP_NAME: sfsc-kafka-c1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+          export HEROKUAPP=$HEROKU_APP_NAME<< parameters.job_env >>
+
+          docker build -t registry.heroku.com/$HEROKUAPP/worker .
+          docker login -u $HEROKU_LOGIN -p $HEROKU_TOKEN registry.heroku.com
+          docker push registry.heroku.com/$HEROKUAPP/worker:latest
+
+          chmod +x .circleci/setup-heroku.sh
+          .circleci/setup-heroku.sh
+
+          heroku container:release worker -a $HEROKUAPP
+          heroku ps:scale worker=<< parameters.scale_env >>:<< parameters.size_env >> -a $HEROKUAPP
+
+workflows:
+  build-deploy-test:
+    jobs:
+      - deploy-web:
+          job_env: "-test"
+          size_env: "private-s"
+          scale_env: 1
+          context:
+            - DOCKER_HUB_CREDS
+            - HEROKU_CREDS
+            - SLACK_CREDS
+          filters:
+            branches:
+              only: develop
+
+  build-deploy-stage:
+    jobs:
+      - deploy-web:
+          job_env: "-stage"
+          size_env: "private-m"
+          scale_env: 1
+          context:
+            - DOCKER_HUB_CREDS
+            - HEROKU_CREDS
+            - SLACK_CREDS
+          filters:
+            branches:
+              only: release
+
+  build-deploy-prod:
+    jobs:
+      - deploy-web:
+          job_env: ""
+          size_env: "private-m"
+          scale_env: 2
+          context:
+            - DOCKER_HUB_CREDS
+            - HEROKU_CREDS
+            - SLACK_CREDS
+          filters:
+            branches:
+              only: master
